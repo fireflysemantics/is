@@ -1,0 +1,46 @@
+{
+  "name": "@fireflysemantics/is",
+  "version": "1.0.0",
+  "description": "Typescript type and validation checking utility library",
+  "main": "index.ts",
+  "scripts": {
+    "unit-test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test": "nyc mocha",
+    "doc": "typedoc --out doc ./src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fireflysemantics/is.git"
+  },
+  "keywords": [
+    "Typescript",
+    "Decorators",
+    "Validation",
+    "Validator",
+    "is"
+  ],
+  "author": "Ole Ersoy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fireflysemantics/is/issues"
+  },
+  "homepage": "https://github.com/fireflysemantics/is#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.2",
+    "@types/node": "^10.3.4",
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "source-map-support": "^0.5.6",
+    "ts-node": "^6.1.2",
+    "tsconfig-paths": "^3.4.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@types/validator": "^9.4.1",
+    "validator": "^10.4.0"
+  }
+}
