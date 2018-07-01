@@ -2,7 +2,7 @@
   "name": "@fireflysemantics/is",
   "version": "1.0.0",
   "description": "Typescript type and validation checking utility library",
-  "main": "index.ts",
+  "main": "src/is.ts",
   "scripts": {
     "unit-test": "mocha -r ts-node/register src/**/*.spec.ts",
     "test": "nyc mocha",
