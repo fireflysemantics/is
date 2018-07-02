@@ -1,5 +1,7 @@
 #doc
 doc
+#target
+target
 # Logs
 logs
 *.log

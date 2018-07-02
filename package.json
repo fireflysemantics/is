@@ -1,12 +1,15 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Typescript type and validation checking utility library",
-  "main": "src/is.ts",
+  "main": "target/is.js",
+  "typings": "target/is.d.ts",
   "scripts": {
     "unit-test": "mocha -r ts-node/register src/**/*.spec.ts",
     "test": "nyc mocha",
-    "doc": "typedoc --out doc ./src/"
+    "doc": "typedoc --out doc ./src/",
+    "compile": "del-cli target && tsc",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -24,12 +27,13 @@
   "bugs": {
     "url": "https://github.com/fireflysemantics/is/issues"
   },
-  "homepage": "https://github.com/fireflysemantics/is#readme",
+  "homepage": "https://fireflysemantics.github.io/is",
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.2",
     "@types/node": "^10.3.4",
     "chai": "^4.1.2",
+    "del-cli": "^1.1.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
