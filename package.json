@@ -20,7 +20,8 @@
     "Decorators",
     "Validation",
     "Validator",
-    "is"
+    "is",
+    "type"
   ],
   "author": "Ole Ersoy",
   "license": "MIT",

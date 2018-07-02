@@ -31,7 +31,6 @@ import { isUUID as vjsIsUUID } from "validator";
 import { isUppercase as vjsIsUppercase } from "validator";
 import { isLength as vjsIsLength } from "validator";
 import { matches as vjsMatches } from "validator";
-
 /**
  * IsNumberOptions.
  */
@@ -91,6 +90,7 @@ export interface IsFQDNOptions {
   allow_trailing_dot?: boolean;
 }
 
+
 /**
  * Checks if the argument is a real boolean.
  * @param value The value being checked.
@@ -100,6 +100,17 @@ export function isBoolean(value: any): boolean {
   return value instanceof Boolean || typeof value === "boolean";
 }
 
+
+/**
+ * Checks if a argument is an array
+ * @param value The value being checked.
+ * @return True if the value is an instance of an array, false otherwise.
+ */
+export function isArray(value: any): boolean {
+  return value instanceof Array;
+}
+
+
 /**
  * Checks if an array contains any items.
  * @param a The array being checked
@@ -108,6 +119,7 @@ export function isBoolean(value: any): boolean {
 export function isArrayEmpty(a: any[]) {
   return a.length == 0 ? true : false;
 }
+
 
 /**
  * @param value The value being checked.
@@ -119,6 +131,7 @@ export function isArrayEmpty(a: any[]) {
 export function isDefined<T>(value: T | null | undefined): value is T {
   return value != null; //This checks for undefined automatically.
 }
+
 
 /**
  * Checks if argument is date.
@@ -140,23 +153,22 @@ export function isString(value: any): boolean {
 }
 
 /**
- * Checks if argument is a ISOString date.
+ * Checks if argument is a ISO 8601 Date String.
+ * 
+ * Such a string is 24 ((YYYY-MM-DDTHH:mm:ss.sssZ) 
+ * or 
+ * 27 (±YYYYYY-MM-DDTHH:mm:ss.sssZ) 
+ * 
+ * characters long.
+ * 
  * @param value The value being checked.
  * @return True if the value is an instance of an ISOString date.
  */
-export function isDateString(value: any): boolean {
+export function isISODateString(value: any): boolean {
   const regex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|\+[0-2]\d(?:\:[0-5]\d)?)?/g;
   return isString(value) && regex.test(value);
 }
 
-/**
- * Checks if a argument is an array
- * @param value The value being checked.
- * @return True if the value is an instance of an array, false otherwise.
- */
-export function isArray(value: any): boolean {
-  return value instanceof Array;
-}
 
 /**
  * Checks if a given value is an enum

@@ -2,31 +2,15 @@ import {isDefined} from "@fireflysemantics/is";
 import {isBoolean} from "@fireflysemantics/is";
 import {isArray} from "@fireflysemantics/is";
 import {isArrayEmpty} from "@fireflysemantics/is";
+import {isDate} from "@fireflysemantics/is";
+import {isString} from "@fireflysemantics/is";
+import {isISODateString} from "@fireflysemantics/is";
 import {expect} from "chai";
 import "mocha";
 
 /**
  * Unit tests.
  */
-
-describe("isDefined", () => {
-  it("should return false for undefined or null arguments", () => {
-    expect(isDefined(undefined)).to.be.false;
-    expect(isDefined(null)).to.be.false;
-  });
-  it("should return true for non null or undefined arguments", () => {
-    expect(isDefined({})).to.be.true;
-    expect(isDefined("foo")).to.be.true;
-    expect(isDefined("")).to.be.true;
-    expect(isDefined(0)).to.be.true;
-    expect(isDefined(-0)).to.be.true;
-    expect(isDefined(Infinity)).to.be.true;
-    expect(isDefined(-Infinity)).to.be.true;
-    expect(isDefined(NaN)).to.be.true;
-    expect(isDefined(new Date())).to.be.true;
-  });
-});
-
 describe("isBoolean", () => {
   it("should return true for all Javascript boolean instances", () => {
     expect(isBoolean(true)).to.be.true;
@@ -83,3 +67,89 @@ describe("isArrayEmpty", () => {
 });
 
 
+describe("isDefined", () => {
+  it("should return false for undefined or null arguments", () => {
+    expect(isDefined(undefined)).to.be.false;
+    expect(isDefined(null)).to.be.false;
+  });
+  it("should return true for non null or undefined arguments", () => {
+    expect(isDefined({})).to.be.true;
+    expect(isDefined("foo")).to.be.true;
+    expect(isDefined("")).to.be.true;
+    expect(isDefined(0)).to.be.true;
+    expect(isDefined(-0)).to.be.true;
+    expect(isDefined(Infinity)).to.be.true;
+    expect(isDefined(-Infinity)).to.be.true;
+    expect(isDefined(NaN)).to.be.true;
+    expect(isDefined(new Date())).to.be.true;
+  });
+});
+
+describe("isDate", () => {
+  it("should return true for date instances", () => {
+    expect(isDate(new Date())).to.be.true;
+    expect(isDate(new Date("12/22/1734"))).to.be.true;
+  });
+  it("should return false for non Date instances", () => {
+    expect(isDate({})).to.be.false;
+    expect(isDate([])).to.be.false;
+    expect(isDate(6)).to.be.false;
+    expect(isDate(undefined)).to.be.false;
+    expect(isDate(null)).to.be.false;
+    expect(isDate(true)).to.be.false;
+    expect(isDate(false)).to.be.false;
+    expect(isDate('fooboo')).to.be.false;
+    expect(isDate(()=>{})).to.be.false;
+    expect(isDate(/x/g)).to.be.false;
+    expect(isDate(new RegExp('c', 'g'))).to.be.false;
+  });
+});
+
+describe("isString", () => {
+  it("should return true for string instances", () => {
+    expect(isString(new Object('pitythefoo'))).to.be.true;
+    expect(isString('pitythefoo')).to.be.true;
+  });
+  it("should return false for non String instances", () => {
+    expect(isString({})).to.be.false;
+    expect(isString([])).to.be.false;
+    expect(isString(6)).to.be.false;
+    expect(isString(undefined)).to.be.false;
+    expect(isString(null)).to.be.false;
+    expect(isString(NaN)).to.be.false;
+    expect(isString(Infinity)).to.be.false;
+    expect(isString(new Number(5))).to.be.false;
+    expect(isString(true)).to.be.false;
+    expect(isString(true)).to.be.false;
+    expect(isString(false)).to.be.false;
+    expect(isString(()=>{})).to.be.false;
+    expect(isString(/x/g)).to.be.false;
+    expect(isString(new RegExp('c', 'g'))).to.be.false;
+    expect(isString(new Date())).to.be.false;
+  });
+});
+
+describe("isISODateString", () => {
+  it("should return true for ISO Date String instances", () => {
+    expect(isISODateString(new Object('2018-06-04T12:33:00.000Z'))).to.be.true;
+    expect(isISODateString(new Date('2018-06-04T12:33:00.000Z').toISOString())).to.be.true;
+    expect(isISODateString(new Date().toISOString())).to.be.true;
+  });
+  it("should return false for non ISO Date String instances", () => {
+    expect(isISODateString({})).to.be.false;
+    expect(isISODateString([])).to.be.false;
+    expect(isISODateString(6)).to.be.false;
+    expect(isISODateString(undefined)).to.be.false;
+    expect(isISODateString(null)).to.be.false;
+    expect(isISODateString(NaN)).to.be.false;
+    expect(isISODateString(Infinity)).to.be.false;
+    expect(isISODateString(new Number(5))).to.be.false;
+    expect(isISODateString(true)).to.be.false;
+    expect(isISODateString(true)).to.be.false;
+    expect(isISODateString(false)).to.be.false;
+    expect(isISODateString(()=>{})).to.be.false;
+    expect(isISODateString(/x/g)).to.be.false;
+    expect(isISODateString(new RegExp('c', 'g'))).to.be.false;
+    expect(isISODateString(new Date())).to.be.false;
+  });
+});
