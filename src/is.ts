@@ -748,7 +748,7 @@ export function isUppercase(value: string): boolean {
  * @param max The max value to perform the check against.
  * @return True if the check passes, false otherwise.
  */
-export function length(value: string, min: number, max?: number): boolean {
+export function isLengthInRange(value: string, min: number, max?: number): boolean {
   return (
     typeof value === "string" && vjsIsLength(value, min, max)
   );
@@ -764,7 +764,7 @@ export function length(value: string, min: number, max?: number): boolean {
  * @returns True if the string's length is not less than given target number, false otherwise.
  */
 export function isLengthMoreThan(value: string, target: number) {
-  return typeof value === "string" && length(value, target);
+  return typeof value === "string" && isLengthInRange(value, target);
 }
 
 /**
@@ -777,7 +777,7 @@ export function isLengthMoreThan(value: string, target: number) {
  * @returns True if the string's length is not less than given target number, false otherwise.
  */
 export function isLengthLessThan(value: string, target: number) {
-  return typeof value === "string" && length(value, 0, target);
+  return typeof value === "string" && isLengthInRange(value, 0, target);
 }
 
 /**
