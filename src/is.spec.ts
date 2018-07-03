@@ -1,10 +1,12 @@
-import {isDefined} from "@fireflysemantics/is";
-import {isBoolean} from "@fireflysemantics/is";
-import {isArray} from "@fireflysemantics/is";
-import {isArrayEmpty} from "@fireflysemantics/is";
-import {isDate} from "@fireflysemantics/is";
-import {isString} from "@fireflysemantics/is";
-import {isISODateString} from "@fireflysemantics/is";
+import { isDefined, 
+         isBoolean,
+         isArray,
+         isArrayEmpty,
+         isDate,
+         isString,
+         isISODateString,
+         isByteLength } from "@fireflysemantics/is";
+
 import {expect} from "chai";
 import "mocha";
 
@@ -151,5 +153,16 @@ describe("isISODateString", () => {
     expect(isISODateString(/x/g)).to.be.false;
     expect(isISODateString(new RegExp('c', 'g'))).to.be.false;
     expect(isISODateString(new Date())).to.be.false;
+  });
+});
+
+
+describe("isByteLength", () => {
+  it("should return true for ISO Date String instances", () => {
+    expect(isByteLength('abc', 1, 4)).to.be.true;
+    expect(isByteLength('abc', 1, Infinity)).to.be.true;
+  });
+  it("should return false for non valid byte length strings", () => {
+    expect(isByteLength('abc', 1, 2)).to.be.false;
   });
 });

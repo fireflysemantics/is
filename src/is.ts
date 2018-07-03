@@ -846,7 +846,7 @@ export function arrayNotContains(array: any[], values: any[]) {
  * @param value The array being checked.
  * @returns True if given array is not empty, false otherwise.
  */
-export function arrayNotEmpty(array: any[]) {
+export function isArrayNotEmpty(array: any[]) {
   if (!(array instanceof Array)) return false;
 
   return array instanceof Array && array.length > 0;
@@ -860,7 +860,7 @@ export function arrayNotEmpty(array: any[]) {
  * @param target The minimum size of the array
  * @returns True if array's length is greater than the target number, false otherwise.
  */
-export function arrayMinSize(array: any[], target: number) {
+export function isArraySizeGreaterThan(array: any[], target: number) {
   if (!(array instanceof Array)) return false;
 
   return array instanceof Array && array.length >= target;
@@ -874,7 +874,7 @@ export function arrayMinSize(array: any[], target: number) {
  * @param target The maximum size of the array
  * @returns True if array's length is less than the target number, false otherwise.
  */
-export function arrayMaxSize(array: any[], target: number) {
+export function isArraySizeLessThan(array: any[], target: number) {
   if (!(array instanceof Array)) return false;
 
   return array instanceof Array && array.length <= target;
@@ -887,7 +887,7 @@ export function arrayMaxSize(array: any[], target: number) {
  * @param value The array being checked.
  * @returns True if all array's values are unique, false otherwise.
  */
-export function arrayUnique(array: any[]) {
+export function isArrayUnique(array: any[]) {
   if (!(array instanceof Array)) return false;
 
   const uniqueItems = array.filter((a, b, c) => c.indexOf(a) === b);
