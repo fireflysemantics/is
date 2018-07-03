@@ -763,7 +763,7 @@ export function length(value: string, min: number, max?: number): boolean {
  * @param target The minimum target length
  * @returns True if the string's length is not less than given target number, false otherwise.
  */
-export function minLength(value: string, target: number) {
+export function isLengthMoreThan(value: string, target: number) {
   return typeof value === "string" && length(value, target);
 }
 
@@ -776,7 +776,7 @@ export function minLength(value: string, target: number) {
  * @param target The maximum target length
  * @returns True if the string's length is not less than given target number, false otherwise.
  */
-export function maxLength(value: string, target: number) {
+export function isLengthLessThan(value: string, target: number) {
   return typeof value === "string" && length(value, 0, target);
 }
 
