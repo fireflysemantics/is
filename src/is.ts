@@ -901,7 +901,7 @@ export function isArrayUnique(array: any[]) {
  * @param target The target type constructor
  * @returns True if the value is an instance of the specified object, false otherwise.
  */
-export function isInstance(
+export function isInstanceOf(
   object: any,
   target: new (...args: any[]) => any
 ) {
