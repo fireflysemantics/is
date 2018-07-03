@@ -819,7 +819,7 @@ export function isMilitaryTime(value: string): boolean {
  * @param target The array of target values
  * @returns True if array contains all values from the given target array, false otherwise.
  */
-export function arrayContains(value: any[], target: any[]) {
+export function isArrayContainerOf(value: any[], target: any[]) {
   if (!(value instanceof Array)) return false;
 
   return !value || target.every(value => value.indexOf(value) !== -1);
@@ -833,7 +833,7 @@ export function arrayContains(value: any[], target: any[]) {
  * @param target The array of target values
  * @returns True if value array does not contain any of the given target values, false otherwise.
  */
-export function arrayNotContains(array: any[], values: any[]) {
+export function isArrayNotContainerOf(array: any[], values: any[]) {
   if (!(array instanceof Array)) return false;
 
   return !array || values.every(value => array.indexOf(value) === -1);
