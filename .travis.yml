@@ -5,11 +5,11 @@ node_js:
 script:
   - npm test
   - npm run doc
-before_deploy:
-  - sed -i '/doc/d' .gitignore
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   on:
     branch: master
+before_deploy:
+  - sed -i '/doc/d' .gitignore
