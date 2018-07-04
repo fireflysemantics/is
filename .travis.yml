@@ -4,6 +4,7 @@ node_js:
   - "stable"
 script:
   - npm test
+  - npm run doc
 deploy:
   provider: pages
   skip_cleanup: true
@@ -11,5 +12,4 @@ deploy:
   on:
     branch: master    
 before_deploy:
-  - npm run doc
   - sed -i '/doc/d' .gitignore
