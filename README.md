@@ -3,3 +3,7 @@
 # @fireflysemantics/is
 
 Typescript type testing and validation library
+
+## Typedoc
+
+[Typedoc Documentation](https://fireflysemantics.github.io/is/doc/index.html)
