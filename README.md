@@ -4,12 +4,11 @@
 
 Typescript type testing and validation library
 
-## Typedoc
+## Usage
 
-### Overview
+See the [test cases](https://github.com/fireflysemantics/is/blob/master/src/is.spec.ts)
 
-[Typedoc Homepage](https://fireflysemantics.github.io/is/doc/index.html)
+## API
 
-### API
+See [Typedoc API](https://fireflysemantics.github.io/is/doc/modules/_is_.html)
 
-[API](https://fireflysemantics.github.io/is/doc/modules/_is_.html)
