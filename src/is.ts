@@ -382,7 +382,14 @@ export function isBooleanString(value: string): boolean {
  * @param value The value being checked.
  * @return True if the value is numeric, false otherwise.
  */
-export function isNumberString(value: string): boolean {
+export function isNumberString(value: string, options: IsNumberOptions = {}): boolean {
+  if (value === ('Infinity')  || value === '-Infinity') {
+    return !!options.allowInfinity;
+  }
+
+  if (value === ('NaN')) {
+    return !!options.allowNaN;
+  }
   return typeof value === "string" && vjsIsNumeric(value);
 }
 

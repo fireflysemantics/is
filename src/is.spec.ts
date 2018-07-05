@@ -315,17 +315,141 @@ import { isPositive } from "@fireflysemantics/is";
 
 describe("isDivisibleBy", () => {
 
-  it(`should be divisible by`, () => {
+  it(`should be positive`, () => {
     expect(isPositive(4)).to.be.true;
   });
-  it(`should not be divisible by`, () => {
+  it(`should not be positive`, () => {
     expect(isPositive(-0)).to.be.false;
     expect(isPositive(0)).to.be.false;
     expect(isPositive(-5)).to.be.false;
   });
 });
 
+import { isNegative } from "@fireflysemantics/is";
 
+describe("isDivisibleBy", () => {
+
+  it(`should be divisible by`, () => {
+    expect(isNegative(4)).to.be.false;
+  });
+  it(`should not be divisible by`, () => {
+    expect(isNegative(-0)).to.be.true;
+    expect(isNegative(0)).to.be.true;
+    expect(isNegative(-5)).to.be.true;
+  });
+});
+
+import { isGreaterThan } from "@fireflysemantics/is";
+
+describe("isGreaterThan", () => {
+
+  it(`should be true`, () => {
+    expect(isGreaterThan(8, 6)).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isGreaterThan(5, 5)).to.be.false;
+    expect(isGreaterThan(0, 0)).to.be.false;
+    expect(isGreaterThan(3, 4)).to.be.false;
+  });
+});
+
+import { isLessThan } from "@fireflysemantics/is";
+
+describe("isLessThan", () => {
+
+  it(`should be false`, () => {
+    expect(isLessThan(8, 6)).to.be.false;
+    expect(isLessThan(5, 5)).to.be.false;
+    expect(isLessThan(0, 0)).to.be.false;
+  });
+  it(`should be true`, () => {
+    expect(isLessThan(3, 4)).to.be.true;
+  });
+});
+
+import { isAfterInstant } from "@fireflysemantics/is";
+
+describe("isAfterInstant", () => {
+
+  it(`should be true`, () => {
+    expect(isAfterInstant(new Date(8), new Date(6))).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isAfterInstant(new Date(5), new Date(5))).to.be.false;
+    expect(isAfterInstant(new Date(0), new Date(0))).to.be.false;
+    expect(isAfterInstant(new Date(3), new Date(4))).to.be.false;
+  });
+});
+
+import { isBeforeInstant } from "@fireflysemantics/is";
+
+describe("isBeforeInstant", () => {
+
+  it(`should be false`, () => {
+    expect(isBeforeInstant(new Date(8), new Date(6))).to.be.false;
+    expect(isBeforeInstant(new Date(5), new Date(5))).to.be.false;
+    expect(isBeforeInstant(new Date(0), new Date(0))).to.be.false;
+  });
+  it(`should be true`, () => {
+    expect(isBeforeInstant(new Date(3), new Date(4))).to.be.true;
+  });
+});
+
+import { isSameInstant } from "@fireflysemantics/is";
+
+describe("isSameInstant", () => {
+
+  it(`should be true`, () => {
+    expect(isSameInstant(new Date(5), new Date(5))).to.be.true;
+    expect(isSameInstant(new Date(0), new Date(0))).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isSameInstant(new Date(3), new Date(4))).to.be.false;
+    expect(isSameInstant(new Date(4), new Date(3))).to.be.false;
+  });
+});
+
+import { isBooleanString } from "@fireflysemantics/is";
+
+describe("isBooleanString", () => {
+
+  it(`should be true`, () => {
+    expect(isBooleanString("true")).to.be.true;
+    expect(isBooleanString("false")).to.be.true;
+    expect(isBooleanString("1")).to.be.true;
+    expect(isBooleanString("0")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isBooleanString("10")).to.be.false;
+    expect(isBooleanString("01")).to.be.false;
+    expect(isBooleanString("TRUE")).to.be.false;
+    expect(isBooleanString("FALSE")).to.be.false;
+    expect(isBooleanString("falsetrue")).to.be.false;
+  });
+});
+
+import { isNumberString } from "@fireflysemantics/is";
+
+const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
+
+describe("isNumberString", () => {
+
+  it(`should be true`, () => {
+    expect(isNumberString("2")).to.be.true;
+    expect(isNumberString("0")).to.be.true;
+    expect(isNumberString("10")).to.be.true;
+    expect(isNumberString("01")).to.be.true;
+    expect(isNumberString("Infinity", options)).to.be.true;
+    expect(isNumberString("NaN", options)).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isNumberString("TRUE")).to.be.false;
+    expect(isNumberString("FALSE")).to.be.false;
+    expect(isNumberString("falsetrue")).to.be.false;
+    expect(isNumberString("Infinity")).to.be.false;
+    expect(isNumberString("NaN")).to.be.false;
+  });
+});
 
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
