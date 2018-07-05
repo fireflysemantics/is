@@ -493,6 +493,151 @@ describe("isNotSubString", () => {
   });
 });
 
+import { isNotSuperString } from "@fireflysemantics/is";
+
+describe("isNotSuperString", () => {
+
+  it(`should be true`, () => {
+    expect(isNotSuperString("TRUE", "FALSE")).to.be.true;
+    expect(isNotSuperString("3", "2")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isNotSuperString("22", "2")).to.be.false;
+    expect(isNotSuperString("fooboo", "boo")).to.be.false;
+  });
+});
+
+import { isAlpha } from "@fireflysemantics/is";
+
+describe("isAlpha", () => {
+
+  it(`should be true`, () => {
+    expect(isAlpha("a")).to.be.true;
+    expect(isAlpha("B")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isAlpha("2")).to.be.false;
+    expect(isAlpha("我")).to.be.false;
+  });
+});
+
+import { isAlphanumeric } from "@fireflysemantics/is";
+
+describe("isAlphanumeric", () => {
+
+  it(`should be true`, () => {
+    expect(isAlphanumeric("a")).to.be.true;
+    expect(isAlphanumeric("B")).to.be.true;
+    expect(isAlphanumeric("2")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isAlphanumeric("我")).to.be.false;
+    expect(isAlphanumeric("$")).to.be.false;
+    expect(isAlphanumeric("&")).to.be.false;
+    expect(isAlphanumeric("@")).to.be.false;
+    expect(isAlphanumeric("!")).to.be.false;
+  });
+});
+
+import { isAscii } from "@fireflysemantics/is";
+
+describe("isAscii", () => {
+
+  it(`should be true`, () => {
+    expect(isAscii("2")).to.be.true;
+    expect(isAscii("@")).to.be.true;
+    expect(isAscii("&")).to.be.true;
+    expect(isAscii("$")).to.be.true;
+    expect(isAscii("+")).to.be.true;
+    expect(isAscii("-")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isAscii("我")).to.be.false;
+  });
+});
+
+import { isBase64 } from "@fireflysemantics/is";
+const btoa = require('btoa');
+
+describe("isAscii", () => {
+
+  it(`should be true`, () => {
+    expect(isBase64(btoa("2"))).to.be.true;
+    expect(isBase64(btoa("@"))).to.be.true;
+    expect(isBase64(btoa("&"))).to.be.true;
+    expect(isBase64(btoa("$"))).to.be.true;
+    expect(isBase64(btoa("+"))).to.be.true;
+    expect(isBase64(btoa("-"))).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isBase64("我")).to.be.false;
+  });
+});
+
+import { isCreditCard } from "@fireflysemantics/is";
+
+describe("isCreditCard", () => {
+  it("should return true", () => {
+    expect(isCreditCard('378247928520957')).to.be.true;
+    expect(isCreditCard('370815144823625')).to.be.true;
+    expect(isCreditCard('4539175760988966')).to.be.true;
+    expect(isCreditCard('4024007167841872')).to.be.true;
+    expect(isCreditCard('5305228386714354')).to.be.true;
+    expect(isCreditCard('5193095214272730')).to.be.true;
+    expect(isCreditCard('6011134360662341')).to.be.true;
+    expect(isCreditCard('6011930876221534')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isCreditCard('abc')).to.be.false;
+  });
+});
+
+import { isEmail } from "@fireflysemantics/is";
+
+describe("isEmail", () => {
+  it("should return true", () => {
+    expect(isEmail('joe@aol.com')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isCreditCard('joe@aol')).to.be.false;
+  });
+});
+
+import { isFQDN } from "@fireflysemantics/is";
+
+describe("isEmail", () => {
+  it("should return true", () => {
+    expect(isFQDN('aol.com')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isFQDN('joe')).to.be.false;
+  });
+});
+
+import { isFullWidth } from "@fireflysemantics/is";
+
+describe("isFullWidth", () => {
+  it("should return true", () => {
+    expect(isFullWidth('全角')).to.be.true;
+    expect(isFullWidth('半角片仮名')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isFullWidth('fullwidth')).to.be.false;
+  });
+});
+
+import { isHalfWidth } from "@fireflysemantics/is";
+
+describe("isFullWidth", () => {
+  it("should return true", () => {
+    expect(isHalfWidth('東京都 新宿区 新宿')).to.be.true;
+    expect(isHalfWidth('halfwidth')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isHalfWidth('半角片仮名')).to.be.false;
+  });
+});
+
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
     expect(isByteLength('abc', 1, 4)).to.be.true;
