@@ -638,6 +638,59 @@ describe("isHalfWidth", () => {
   });
 });
 
+import { isVariableWidth } from "@fireflysemantics/is";
+
+describe("isVariableWidth", () => {
+  it("should return true", () => {
+    expect(isVariableWidth('xyzひらが字')).to.be.true;
+    expect(isVariableWidth('234abc３ー０')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isVariableWidth('半角片仮名')).to.be.false;
+  });
+});
+
+import { isHexColor } from "@fireflysemantics/is";
+
+describe("isHexColor", () => {
+  it("should return true", () => {
+    expect(isHexColor('#ff0022')).to.be.true;
+    expect(isHexColor('#BBBBBB')).to.be.true;
+    expect(isHexColor('fff')).to.be.true;
+    expect(isHexColor('ccc')).to.be.true;
+    expect(isHexColor('#f00')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isHexColor('#ff12FG')).to.be.false;
+    expect(isHexColor('ccc00')).to.be.false;
+  });
+});
+
+import { isHexadecimal } from "@fireflysemantics/is";
+
+describe("isHexadecimal", () => {
+  it("should return true", () => {
+    expect(isHexadecimal('e')).to.be.true;
+    expect(isHexadecimal('a')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isHexadecimal('abcdefg')).to.be.false;
+  });
+});
+
+import { isIP } from "@fireflysemantics/is";
+
+describe("isIP", () => {
+  it("should return true", () => {
+    expect(isIP('127.0.0.1')).to.be.true;
+    expect(isIP('2.2.2.2')).to.be.true;
+    expect(isIP('255.255.255.255')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isIP('0000.1.1.1.1.1')).to.be.false;
+  });
+});
+
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
     expect(isByteLength('abc', 1, 4)).to.be.true;
