@@ -2,11 +2,11 @@
 
 # @fireflysemantics/is
 
-Typescript type testing and validation library
+Typescript type testing and validation library.  Delegates to [validator.js](https://github.com/chriso/validator.js).
 
 ## Usage
 
-See the [test cases](https://github.com/fireflysemantics/is/blob/master/src/is.spec.ts)
+See the [test cases](https://github.com/fireflysemantics/is/blob/master/src/is.spec.ts).  For additional detail also see the [validator.js test cases](https://github.com/chriso/validator.js/tree/master/test)
 
 ## API
 
