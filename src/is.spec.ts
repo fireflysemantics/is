@@ -605,7 +605,7 @@ describe("isEmail", () => {
 
 import { isFQDN } from "@fireflysemantics/is";
 
-describe("isEmail", () => {
+describe("isFQDN", () => {
   it("should return true", () => {
     expect(isFQDN('aol.com')).to.be.true;
   });
@@ -628,7 +628,7 @@ describe("isFullWidth", () => {
 
 import { isHalfWidth } from "@fireflysemantics/is";
 
-describe("isFullWidth", () => {
+describe("isHalfWidth", () => {
   it("should return true", () => {
     expect(isHalfWidth('東京都 新宿区 新宿')).to.be.true;
     expect(isHalfWidth('halfwidth')).to.be.true;
