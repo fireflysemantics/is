@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "Typescript type and validation checking utility library",
   "main": "target/is.js",
   "typings": "target/is.d.ts",
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/fireflysemantics/is/issues"
   },
-  "homepage": "https://fireflysemantics.github.io/is/doc",
+  "homepage": "https://fireflysemantics.github.io/is/doc/modules/_is_.html",
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.2",
