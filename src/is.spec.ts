@@ -267,6 +267,66 @@ describe("isNotEmpty", () => {
   });
 });
 
+import { isIn } from "@fireflysemantics/is";
+
+describe("isIn", () => {
+
+  it(`should return true when the value is in the array`, () => {
+    expect(isIn(2, [2])).to.be.true;
+    expect(isIn('a', ['a', 'b'])).to.be.true;
+    expect(isIn('a', ['a'])).to.be.true;
+    expect(isIn([2,3], [[2,3]])).to.be.true;
+  });
+  it(`should return false when the value is not in the array`, () => {
+    expect(isIn('a', ['b'])).to.be.false;
+    expect(isIn([2,4], [[2,3]])).to.be.false;
+  });
+});
+
+import { isNotIn } from "@fireflysemantics/is";
+
+describe("isNotIn", () => {
+
+  it(`should return false when the value is in the array`, () => {
+    expect(isNotIn(2, [2])).to.be.false;
+    expect(isNotIn('a', ['a', 'b'])).to.be.false;
+    expect(isNotIn('a', ['a'])).to.be.false;
+    expect(isNotIn([2,3], [[2,3]])).to.be.false;
+  });
+  it(`should return true when the value is not in the array`, () => {
+    expect(isNotIn('a', ['b'])).to.be.true;
+    expect(isNotIn([2,4], [[2,3]])).to.be.true;
+  });
+});
+
+import { isDivisibleBy } from "@fireflysemantics/is";
+
+describe("isDivisibleBy", () => {
+
+  it(`should be divisible by`, () => {
+    expect(isDivisibleBy(4, 2)).to.be.true;
+  });
+  it(`should not be divisible by`, () => {
+    expect(isDivisibleBy(5, 2)).to.be.false;
+  });
+});
+
+import { isPositive } from "@fireflysemantics/is";
+
+describe("isDivisibleBy", () => {
+
+  it(`should be divisible by`, () => {
+    expect(isPositive(4)).to.be.true;
+  });
+  it(`should not be divisible by`, () => {
+    expect(isPositive(-0)).to.be.false;
+    expect(isPositive(0)).to.be.false;
+    expect(isPositive(-5)).to.be.false;
+  });
+});
+
+
+
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
     expect(isByteLength('abc', 1, 4)).to.be.true;

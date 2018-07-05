@@ -248,15 +248,19 @@ export function isNotEmpty(value: any): boolean {
 /**
  * Checks if given value is in the target array of allowed values.
  * 
+ * If the target is not an array false is returned.
+ * 
  * @param value The value being checked.
- * @param target The target value to perform the check against.
+ * @param target The target array to perform the check against.
  * @return True if the value is in the target array, false otherwise.
  */
 export function isIn(value: any, target: any[]): boolean {
-  return (
-    !(target instanceof Array) ||
-    target.some(possibleValue => possibleValue === value)
-  );
+  if (!isArray(value)) {
+    return !isArray(target) || target.indexOf(value)>-1;
+  }
+  else {
+    return (JSON.stringify(target)).indexOf(JSON.stringify(value)) != -1;
+  }
 }
 
 /**
@@ -267,14 +271,13 @@ export function isIn(value: any, target: any[]): boolean {
  * @return True if the value is not in the target array, false otherwise.
  */
 export function isNotIn(value: any, target: any[]): boolean {
-  return (
-    !(target instanceof Array) ||
-    !target.some(possibleValue => possibleValue === value)
-  );
+  return !isArray(target) || !isIn(value, target);
 }
 
 /**
- * Checks if value is a number that is divisible by the second argument.
+ * Checks if the value is the value that is divisible by the target
+ * without producing a remainder.
+ * 
  * @param value The value being checked.
  * @param target The target value to perform the check against.
  * @return True if the value is divisible by the target, false otherwise.
@@ -288,7 +291,7 @@ export function isDivisibleBy(value: number, target: number): boolean {
 }
 
 /**
- * Checks if the value is a positive number.
+ * Checks if the value is > 0.
  * @param value The value being checked.
  * @return True if the value is positive, false otherwise.
  */
@@ -299,30 +302,30 @@ export function isPositive(value: number): boolean {
 /**
  * Checks if the value is a negative number.
  * @param value The value being checked.
- * @return True if the value is negative, false otherwise.
+ * @return True if the value is < 0, false otherwise.
  */
 export function isNegative(value: number): boolean {
-  return typeof value === "number" && value < 0;
+  return !isPositive(value);
 }
 
 /**
- * Checks if the first number is greater than second.
+ * Checks if value > target.
  * @param value The value being checked.
  * @param target The target value to perform the check against.
  * @return True if the value is greater than the target, false otherwise.
  */
 export function isGreaterThan(value: number, target: number): boolean {
-  return typeof value === "number" && typeof target === "number" && value >= target;
+  return typeof value === "number" && typeof target === "number" && value > target;
 }
 
 /**
- * Checks if the first number is less than second.
+ * Checks if the first number is value < target.
  * @param value The value being checked.
  * @param target The target value to perform the check against.
  * @return True if the value is less than the target, false otherwise.
  */
 export function isLessThan(value: number, target: number): boolean {
-  return typeof value === "number" && typeof target === "number" && value <= target;
+  return typeof value === "number" && typeof target === "number" && value < target;
 }
 
 /**
