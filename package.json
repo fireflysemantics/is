@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/fireflysemantics/is/issues"
   },
-  "homepage": "https://fireflysemantics.github.io/is",
+  "homepage": "https://fireflysemantics.github.io/is/doc",
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.2",
