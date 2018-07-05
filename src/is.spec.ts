@@ -479,6 +479,20 @@ describe("isSuperString", () => {
   });
 });
 
+import { isNotSubString } from "@fireflysemantics/is";
+
+describe("isNotSubString", () => {
+
+  it(`should be true`, () => {
+    expect(isNotSubString("TRUE", "FALSE")).to.be.true;
+    expect(isNotSubString("3", "2")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isNotSubString("2", "22")).to.be.false;
+    expect(isNotSubString("foo", "fooboo")).to.be.false;
+  });
+});
+
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
     expect(isByteLength('abc', 1, 4)).to.be.true;
