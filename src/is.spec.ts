@@ -2,10 +2,14 @@ import { isDefined,
          isBoolean,
          isArray,
          isArrayEmpty,
+         isEnum,
+         isNumber,
+         isInt,
+         IsNumberOptions,
          isDate,
          isString,
          isISODateString,
-         isByteLength } from "@fireflysemantics/is";
+         isByteLength} from "@fireflysemantics/is";
 
 import {expect} from "chai";
 import "mocha";
@@ -156,6 +160,112 @@ describe("isISODateString", () => {
   });
 });
 
+describe("isEnum", () => {
+  
+  const one = { one: 1};
+  const two = { two: 2 };
+
+  it(`should return true for ISO Date String instances`, () => {
+    expect(isEnum(1, one)).to.be.true;
+  });
+  it(`should return false for non valid byte length strings`, () => {
+    expect(isEnum(1, two)).to.be.false;
+  });
+});
+
+describe("isNumber", () => {
+
+  const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
+
+  it("should return true for numbers that are valid", () => {
+    expect(isNumber(2)).to.be.true;
+    expect(isNumber(NaN, options)).to.be.true;
+    expect(isNumber(Infinity, options)).to.be.true;
+    expect(isNumber(-Infinity, options)).to.be.true;
+  });
+  it("should return false non numbers", () => {
+    expect(isNumber(NaN)).to.be.false;
+    expect(isNumber(Infinity)).to.be.false;
+    expect(isNumber(-Infinity)).to.be.false;
+  });
+});
+
+describe("isInt", () => {
+
+  const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
+
+  it("should return true for numbers that are valid", () => {
+    expect(isInt(2)).to.be.true;
+  });
+  it("should return false non numbers", () => {
+    expect(isInt(NaN)).to.be.false;
+    expect(isInt(Infinity)).to.be.false;
+    expect(isInt(-Infinity)).to.be.false;
+  });
+});
+
+import { isEqualTo } from "@fireflysemantics/is";
+
+describe("isEqualTo", () => {
+
+  const options = {};
+
+  it("should return true for numbers that are valid", () => {
+    expect(isEqualTo(options, options)).to.be.true;
+  });
+  it("should return false non numbers", () => {
+    expect(isEqualTo(options, NaN)).to.be.false;
+    expect(isEqualTo(options, Infinity)).to.be.false;
+    expect(isEqualTo(options, -Infinity)).to.be.false;
+  });
+});
+
+import { isNotEqualTo } from "@fireflysemantics/is";
+
+describe("isNotEqualTo", () => {
+
+  const options = {};
+
+  it("should return false for things that are equal", () => {
+    expect(isNotEqualTo(options, options)).to.be.false;
+  });
+
+  it("should return true for things that are not equal", () => {
+    expect(isNotEqualTo(options, NaN)).to.be.true;
+    expect(isNotEqualTo(options, Infinity)).to.be.true;
+    expect(isNotEqualTo(options, -Infinity)).to.be.true;
+  });
+});
+
+import { isEmpty } from "@fireflysemantics/is";
+
+describe("isEmpty", () => {  
+  it(`should return true for empty values`, () => {
+    expect(isEmpty("")).to.be.true;
+    expect(isEmpty(null)).to.be.true;
+    expect(isEmpty(undefined)).to.be.true;
+  });
+
+  it(`should return false for non empty values`, () => {
+    expect(isEmpty("Not empty")).to.be.false;
+    expect(isEmpty(NaN)).to.be.false;
+  });
+});
+
+import { isNotEmpty } from "@fireflysemantics/is";
+
+describe("isNotEmpty", () => {  
+  it(`should return true for non empty values`, () => {
+    expect(isNotEmpty("Not empty")).to.be.true;
+    expect(isNotEmpty(NaN)).to.be.true;
+  });
+
+  it(`should return false for empty values`, () => {
+    expect(isNotEmpty("")).to.be.false;
+    expect(isNotEmpty(null)).to.be.false;
+    expect(isNotEmpty(undefined)).to.be.false;
+  });
+});
 
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {

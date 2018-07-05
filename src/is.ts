@@ -171,14 +171,14 @@ export function isISODateString(value: any): boolean {
 
 
 /**
- * Checks if a given value is an enum
+ * Checks if a given value is an enum 
+ * (The value is contained in a property on the target object).
  * @param value The value being checked.
- * @param entity The enum instance
+ * @param target The enum instance
  * @return True if the value is an instance of the enum, false otherwise.
  */
-export function isEnum(value: any, entity: any): boolean {
-  const enumValues = Object.keys(entity).map(k => entity[k]);
-  return enumValues.indexOf(value) >= 0;
+export function isEnum(value: any, target: any): boolean {
+  return Object.values(target).indexOf(value) >= 0;
 }
 
 /**
@@ -189,13 +189,12 @@ export function isEnum(value: any, entity: any): boolean {
  */
 export function isNumber(value: any, options: IsNumberOptions = {}): boolean {
   if (value === Infinity || value === -Infinity) {
-    return options.allowInfinity;
+    return !!options.allowInfinity;
   }
 
   if (Number.isNaN(value)) {
-    return options.allowNaN;
+    return !!options.allowNaN;
   }
-
   return Number.isFinite(value);
 }
 
