@@ -451,6 +451,34 @@ describe("isNumberString", () => {
   });
 });
 
+import { isSubString } from "@fireflysemantics/is";
+
+describe("isSubString", () => {
+
+  it(`should be true`, () => {
+    expect(isSubString("2", "22")).to.be.true;
+    expect(isSubString("foo", "fooboo")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isSubString("TRUE", "FALSE")).to.be.false;
+    expect(isSubString("3", "2")).to.be.false;
+  });
+});
+
+import { isSuperString } from "@fireflysemantics/is";
+
+describe("isSuperString", () => {
+
+  it(`should be true`, () => {
+    expect(isSuperString("22", "2")).to.be.true;
+    expect(isSuperString("fooboo", "foo")).to.be.true;
+  });
+  it(`should be false`, () => {
+    expect(isSuperString("TRUE", "FALSE")).to.be.false;
+    expect(isSuperString("33", "2")).to.be.false;
+  });
+});
+
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
     expect(isByteLength('abc', 1, 4)).to.be.true;
