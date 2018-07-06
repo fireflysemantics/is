@@ -686,6 +686,74 @@ describe("isIP", () => {
   });
 });
 
+import { isISBN } from "@fireflysemantics/is";
+
+describe("isISBN", () => {
+  it("should return true", () => {
+    expect(isISBN('978-3-16-148410-0')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isISBN('0000.1.1.1.1.1')).to.be.false;
+  });
+});
+
+import { isISO8601 } from "@fireflysemantics/is";
+
+describe("isISBN", () => {
+  it("should return true", () => {
+    expect(isISO8601('2007-03-15T15:51:00')).to.be.true;
+    expect(isISO8601('2007-03-15')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isISO8601('0000.1.1.1.1.1')).to.be.false;
+  });
+});
+
+import { isJSON } from "@fireflysemantics/is";
+
+describe("isJSON", () => {
+  it("should return true", () => {
+    expect(isJSON('{"json": "json"}')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isJSON('(json: {0000.1.1.1.1.1)}')).to.be.false;
+  });
+});
+
+import { isLowercase } from "@fireflysemantics/is";
+
+describe("isLowercase", () => {
+  it("should return true", () => {
+    expect(isLowercase('lowercase')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isLowercase('LOWERCASE')).to.be.false;
+  });
+});
+
+import { isUppercase } from "@fireflysemantics/is";
+
+describe("isUppercase", () => {
+  it("should return true", () => {
+    expect(isUppercase('UPPERCASE')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isUppercase('uppercase')).to.be.false;
+  });
+});
+
+import { isMobilePhone } from "@fireflysemantics/is";
+
+describe("isMobilePhone", () => {
+  it("should return true", () => {
+    expect(isMobilePhone('7086324345', "en-US")).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isMobilePhone('424345', "en-US")).to.be.false;
+  });
+});
+
+
 import { isByteLength } from "@fireflysemantics/is";
 
 describe("isByteLength", () => {
