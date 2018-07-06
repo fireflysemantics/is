@@ -1,24 +1,14 @@
-import { isDefined, 
-         isBoolean,
-         isArray,
-         isArrayEmpty,
-         isEnum,
-         isNumber,
-         isInt,
-         IsNumberOptions,
-         isDate,
-         isString,
-         isISODateString,
-         isByteLength} from "@fireflysemantics/is";
-
 import {expect} from "chai";
 import "mocha";
 
 /**
  * Unit tests.
  */
+
+import { isBoolean } from "@fireflysemantics/is";
+
 describe("isBoolean", () => {
-  it("should return true for all Javascript boolean instances", () => {
+  it("should return true", () => {
     expect(isBoolean(true)).to.be.true;
     expect(isBoolean(false)).to.be.true;
     expect(isBoolean(new Boolean("True"))).to.be.true;
@@ -26,7 +16,7 @@ describe("isBoolean", () => {
     expect(isBoolean(new Boolean(0))).to.be.true;
     expect(isBoolean(new Boolean(1))).to.be.true;
   });
-  it("should return false for non boolean types", () => {
+  it("should return false", () => {
     expect(isBoolean({})).to.be.false;
     expect(isBoolean("foo")).to.be.false;
     expect(isBoolean("")).to.be.false;
@@ -41,6 +31,8 @@ describe("isBoolean", () => {
   });
 });
 
+import { isArray } from "@fireflysemantics/is";
+
 describe("isArray", () => {
   it("should return true for arrays that are not empty", () => {
     expect(isArray([2])).to.be.true;
@@ -51,34 +43,22 @@ describe("isArray", () => {
   });
 });
 
+import { isArrayEmpty } from "@fireflysemantics/is";
 
 describe("isArrayEmpty", () => {
-  it("should return true for arrays that are not empty", () => {
+  it("should return true", () => {
+    expect(isArrayEmpty([])).to.be.true;
+  });
+  it("should return false for arrays that are empty", () => {
     expect(isArrayEmpty([2])).to.be.false;
     expect(isArrayEmpty(['a'])).to.be.false;
   });
-  it("should return true for arrays that are empty", () => {
-    expect(isArrayEmpty([])).to.be.true;
-  });
 });
 
-describe("isArrayEmpty", () => {
-  it("should return true for arrays that are not empty", () => {
-    expect(isArrayEmpty([2])).to.be.false;
-    expect(isArrayEmpty(['a'])).to.be.false;
-  });
-  it("should return true for arrays that are empty", () => {
-    expect(isArrayEmpty([])).to.be.true;
-  });
-});
-
+import { isDefined } from "@fireflysemantics/is";
 
 describe("isDefined", () => {
-  it("should return false for undefined or null arguments", () => {
-    expect(isDefined(undefined)).to.be.false;
-    expect(isDefined(null)).to.be.false;
-  });
-  it("should return true for non null or undefined arguments", () => {
+  it("should return true", () => {
     expect(isDefined({})).to.be.true;
     expect(isDefined("foo")).to.be.true;
     expect(isDefined("")).to.be.true;
@@ -89,14 +69,20 @@ describe("isDefined", () => {
     expect(isDefined(NaN)).to.be.true;
     expect(isDefined(new Date())).to.be.true;
   });
+  it("should return false", () => {
+    expect(isDefined(undefined)).to.be.false;
+    expect(isDefined(null)).to.be.false;
+  });
 });
 
+import { isDate } from "@fireflysemantics/is";
+
 describe("isDate", () => {
-  it("should return true for date instances", () => {
+  it("should return true", () => {
     expect(isDate(new Date())).to.be.true;
     expect(isDate(new Date("12/22/1734"))).to.be.true;
   });
-  it("should return false for non Date instances", () => {
+  it("should return false", () => {
     expect(isDate({})).to.be.false;
     expect(isDate([])).to.be.false;
     expect(isDate(6)).to.be.false;
@@ -110,6 +96,8 @@ describe("isDate", () => {
     expect(isDate(new RegExp('c', 'g'))).to.be.false;
   });
 });
+
+import { isString } from "@fireflysemantics/is";
 
 describe("isString", () => {
   it("should return true for string instances", () => {
@@ -134,6 +122,8 @@ describe("isString", () => {
     expect(isString(new Date())).to.be.false;
   });
 });
+
+import { isISODateString } from "@fireflysemantics/is";
 
 describe("isISODateString", () => {
   it("should return true for ISO Date String instances", () => {
@@ -160,18 +150,22 @@ describe("isISODateString", () => {
   });
 });
 
+import { isEnum } from "@fireflysemantics/is";
+
 describe("isEnum", () => {
   
   const one = { one: 1};
   const two = { two: 2 };
 
-  it(`should return true for ISO Date String instances`, () => {
+  it(`should return true`, () => {
     expect(isEnum(1, one)).to.be.true;
   });
-  it(`should return false for non valid byte length strings`, () => {
+  it(`should return false`, () => {
     expect(isEnum(1, two)).to.be.false;
   });
 });
+
+import { isNumber, IsNumberOptions } from "@fireflysemantics/is";
 
 describe("isNumber", () => {
 
@@ -183,6 +177,7 @@ describe("isNumber", () => {
     expect(isNumber(Infinity, options)).to.be.true;
     expect(isNumber(-Infinity, options)).to.be.true;
   });
+
   it("should return false non numbers", () => {
     expect(isNumber(NaN)).to.be.false;
     expect(isNumber(Infinity)).to.be.false;
@@ -190,9 +185,9 @@ describe("isNumber", () => {
   });
 });
 
-describe("isInt", () => {
+import { isInt } from "@fireflysemantics/is";
 
-  const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
+describe("isInt", () => {
 
   it("should return true for numbers that are valid", () => {
     expect(isInt(2)).to.be.true;
@@ -690,6 +685,8 @@ describe("isIP", () => {
     expect(isIP('0000.1.1.1.1.1')).to.be.false;
   });
 });
+
+import { isByteLength } from "@fireflysemantics/is";
 
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
