@@ -16,6 +16,7 @@ describe("isBoolean", () => {
     expect(isBoolean(new Boolean(0))).to.be.true;
     expect(isBoolean(new Boolean(1))).to.be.true;
   });
+
   it("should return false", () => {
     expect(isBoolean({})).to.be.false;
     expect(isBoolean("foo")).to.be.false;
@@ -34,12 +35,13 @@ describe("isBoolean", () => {
 import { isArray } from "@fireflysemantics/is";
 
 describe("isArray", () => {
-  it("should return true for arrays that are not empty", () => {
+  it("should return true", () => {
     expect(isArray([2])).to.be.true;
     expect(isArray(['a'])).to.be.true;
   });
-  it("should return true for arrays that are empty", () => {
-    expect(isArray([])).to.be.true;
+  it("should return true", () => {
+    expect(isArray("a")).to.be.false;
+    expect(isArray(1)).to.be.false;
   });
 });
 
@@ -49,7 +51,7 @@ describe("isArrayEmpty", () => {
   it("should return true", () => {
     expect(isArrayEmpty([])).to.be.true;
   });
-  it("should return false for arrays that are empty", () => {
+  it("should return false", () => {
     expect(isArrayEmpty([2])).to.be.false;
     expect(isArrayEmpty(['a'])).to.be.false;
   });
@@ -165,6 +167,27 @@ describe("isEnum", () => {
   });
 });
 
+import { isObject } from "@fireflysemantics/is";
+
+describe("isObject", () => {
+  
+  const one = { one: 1};
+  const two = { two: "2" };
+
+  it(`should return true`, () => {
+    expect(isObject(one)).to.be.true;
+    expect(isObject(two)).to.be.true;
+  });
+  it(`should return false`, () => {
+    expect(isObject(1)).to.be.false;
+    expect(isObject("a")).to.be.false;
+    expect(isObject(()=>{})).to.be.false;
+    expect(isObject(NaN)).to.be.false;
+    expect(isObject(undefined)).to.be.false;
+    expect(isObject(null)).to.be.false;
+  });
+});
+
 import { isNumber, IsNumberOptions } from "@fireflysemantics/is";
 
 describe("isNumber", () => {
@@ -267,6 +290,8 @@ import { isIn } from "@fireflysemantics/is";
 describe("isIn", () => {
 
   it(`should return true when the value is in the array`, () => {
+    expect(isIn(null, [null])).to.be.true;
+    expect(isIn(undefined, [undefined])).to.be.true;
     expect(isIn(2, [2])).to.be.true;
     expect(isIn('a', ['a', 'b'])).to.be.true;
     expect(isIn('a', ['a'])).to.be.true;
@@ -750,6 +775,196 @@ describe("isMobilePhone", () => {
   });
   it("should return false", () => {
     expect(isMobilePhone('424345', "en-US")).to.be.false;
+  });
+});
+
+import { isMongoId } from "@fireflysemantics/is";
+
+describe("isMongoId", () => {
+  it("should return true", () => {
+    expect(isMongoId('507f191e810c19729de860ea')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isMongoId('424345')).to.be.false;
+  });
+});
+
+import { isMultibyte } from "@fireflysemantics/is";
+
+describe("isMultibyte", () => {
+  it("should return true", () => {
+    expect(isMultibyte('がな・カタ')).to.be.true;
+    expect(isMultibyte('email＠example.com')).to.be.true;
+    expect(isMultibyte('ｘｙ34xxyyF')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isMultibyte('abcdef')).to.be.false;
+    expect(isMultibyte('424345')).to.be.false;
+    expect(isMultibyte('123abc')).to.be.false;
+    expect(isMultibyte('#$@!" *.')).to.be.false;
+  });
+});
+
+import { isSurrogatePair } from "@fireflysemantics/is";
+
+describe("isSurrogatePair", () => {
+  it("should return true", () => {
+    expect(isSurrogatePair('𩸽')).to.be.true;
+    expect(isSurrogatePair('AB𥧄1-2')).to.be.true;
+    expect(isSurrogatePair('野𠮷')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isSurrogatePair('AB1-2')).to.be.false;
+    expect(isSurrogatePair('野')).to.be.false;
+  });
+});
+
+
+import { isURL } from "@fireflysemantics/is";
+
+describe("isURL", () => {
+  it("should return true", () => {
+    expect(isURL('norway.no')).to.be.true;
+    expect(isURL('http://snafu.com?bar=foo')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isURL('.no')).to.be.false;
+    expect(isURL('invalid://country.no')).to.be.false;
+  });
+});
+
+import { isUUID } from "@fireflysemantics/is";
+
+describe("isUUID", () => {
+  it("should return true", () => {
+    expect(isUUID('62db5524-8191-11e8-adc0-fa7ae01bbebc')).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isUUID('424345')).to.be.false;
+  });
+});
+
+import { isLengthInRange } from "@fireflysemantics/is";
+
+describe("isLengthInRange", () => {
+  it("should return true", () => {
+    expect(isLengthInRange('62db5524-8191-11e8-adc0-fa7ae01bbebc', 0)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isLengthInRange('424345', 2,3)).to.be.false;
+  });
+});
+
+import { isLengthGreaterThan } from "@fireflysemantics/is";
+
+describe("isLengthMoreThan", () => {
+  it("should return true", () => {
+    expect(isLengthGreaterThan('62db552dsfsadfasf4', 10)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isLengthGreaterThan('4', 2)).to.be.false;
+  });
+});
+
+
+import { isLengthLessThan } from "@fireflysemantics/is";
+
+describe("isLengthLessThan", () => {
+  it("should return true", () => {
+    expect(isLengthLessThan('62db5524', 10)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isLengthLessThan('424345', 2)).to.be.false;
+  });
+});
+
+import { matches } from "@fireflysemantics/is";
+
+describe("matches", () => {
+  it("should return true", () => {
+    expect(matches('xyz', /xyz/)).to.be.true;
+    expect(matches('xyz333', /xyz/)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(matches('XY', /xyz/)).to.be.false;
+  });
+});
+
+import { isArrayContainerOf } from "@fireflysemantics/is";
+
+describe("isArrayContainerOf", () => {
+  it("should return true", () => {
+    expect(isArrayContainerOf([2,3,4], [2,3])).to.be.true;
+    expect(isArrayContainerOf([null,undefined,4], [null,undefined])).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isArrayContainerOf([2,3,4], [2,3,4,1])).to.be.false;
+    expect(isArrayContainerOf([{},{a: 1}, 4], [{}])).to.be.false;
+  });
+});
+
+import { isNotArrayContainerOf } from "@fireflysemantics/is";
+
+describe("isNotArrayContainerOf", () => {
+  it("should return true", () => {
+    expect(isNotArrayContainerOf([null,undefined,4], [3,2,null,undefined, NaN])).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isNotArrayContainerOf([2,3,4], [2,3,4,2,2])).to.be.false;
+    expect(isNotArrayContainerOf([2,3,4,1], [4,1])).to.be.false;
+  });
+});
+
+import { isArrayNotEmpty } from "@fireflysemantics/is";
+
+describe("isArrayNotEmpty", () => {
+  it("should return true", () => {
+    expect(isArrayNotEmpty([2])).to.be.true;
+    expect(isArrayNotEmpty(['a'])).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isArrayNotEmpty([])).to.be.false;
+  });
+});
+
+
+import { isArraySizeGreaterThan } from "@fireflysemantics/is";
+
+describe("isArraySizeGreaterThan", () => {
+  it("should return true", () => {
+    expect(isArraySizeGreaterThan([2], 0)).to.be.true;
+    expect(isArraySizeGreaterThan(['a'], 0)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isArraySizeGreaterThan([], 0)).to.be.false;
+  });
+});
+
+import { isArraySizeLessThan } from "@fireflysemantics/is";
+
+describe("isArraySizeLessThan", () => {
+  it("should return true", () => {
+    expect(isArraySizeLessThan([2], 2)).to.be.true;
+    expect(isArraySizeLessThan(['a'], 2)).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isArraySizeLessThan([1], 1)).to.be.false;
+  });
+});
+
+import { isArrayUnique } from "@fireflysemantics/is";
+
+describe("isArrayUnique", () => {
+  it("should return true", () => {
+    expect(isArrayUnique([2])).to.be.true;
+    expect(isArrayUnique(['a'])).to.be.true;
+    expect(isArrayUnique([null])).to.be.true;
+    expect(isArrayUnique([undefined])).to.be.true;
+  });
+  it("should return false", () => {
+    expect(isArrayUnique([1,1])).to.be.false;
+    expect(isArrayUnique([null, null])).to.be.false;
+    expect(isArrayUnique([undefined, undefined])).to.be.false;
   });
 });
 

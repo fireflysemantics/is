@@ -110,14 +110,15 @@ export function isArray(value: any): boolean {
   return value instanceof Array;
 }
 
-
 /**
  * Checks if an array contains any items.
- * @param a The array being checked
+ * @param value The array being checked
  * @return True if the array is empty and false otherwise.
  */
-export function isArrayEmpty(a: any[]) {
-  return a.length == 0 ? true : false;
+export function isArrayEmpty(value: any[]) {
+  if (!isArray(value)) return false;
+
+  return value.length == 0 ? true : false;
 }
 
 
@@ -179,6 +180,19 @@ export function isISODateString(value: any): boolean {
  */
 export function isEnum(value: any, target: any): boolean {
   return Object.values(target).indexOf(value) >= 0;
+}
+
+/**
+ * Checks if the instance is defined, is not an array, and
+ * an object (typeof value === 'object').  
+ * @param value The value being checked.
+ * @return True if the value is an instance of the enum, false otherwise.
+ */
+export function isObject(value: any): boolean {
+  if (isArray(value)) {
+    return false;
+  }
+  return isDefined(value) ? typeof value === 'object' : false;
 }
 
 /**
@@ -248,13 +262,27 @@ export function isNotEmpty(value: any): boolean {
 /**
  * Checks if given value is in the target array of allowed values.
  * 
+ * The value being checked should not be an object (isObject(value) != true).  It must
+ * be a primitive javascript type, like a string, number,
+ * or boolean.
+ * 
  * If the target is not an array false is returned.
+ * 
+ * Note that when the value is an array, JSON.stringify is used
+ * to perform the check.  It has a few quirks that are discussed
+ * here.  These could affect the output in certain edge cases:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+ * 
+ * For example Infinity is considered null by JSON.stringify.
  * 
  * @param value The value being checked.
  * @param target The target array to perform the check against.
  * @return True if the value is in the target array, false otherwise.
  */
 export function isIn(value: any, target: any[]): boolean {
+  if (isObject(value)) {
+    return false;
+  }
   if (!isArray(value)) {
     return !isArray(target) || target.indexOf(value)>-1;
   }
@@ -772,7 +800,7 @@ export function isLengthInRange(value: string, min: number, max?: number): boole
  * @param target The minimum target length
  * @returns True if the string's length is not less than given target number, false otherwise.
  */
-export function isLengthMoreThan(value: string, target: number) {
+export function isLengthGreaterThan(value: string, target: number) {
   return typeof value === "string" && isLengthInRange(value, target);
 }
 
@@ -822,16 +850,25 @@ export function isMilitaryTime(value: string): boolean {
 
 /**
  * Checks if value array contains all values from the given target array.
- * If null or undefined is given then this function returns false.
+ * If value is null, undefined, or not an array instance
+ * then this function returns false.
+ * 
+ * The values check should be primitive javascript types (String, number, boolean, null, undefined, etc.).
+ * and not Object instances.
+ * 
+ * Note that the check is value based.  For example the values 
+ * in the array [2,3,4,2] are contained by [2,3,4] even though the latter
+ * is shorter. 
  * 
  * @param value The value container array being checked.
  * @param target The array of target values
  * @returns True if array contains all values from the given target array, false otherwise.
  */
-export function isArrayContainerOf(value: any[], target: any[]) {
+
+ export function isArrayContainerOf(value: any[], target: any[]) {
   if (!(value instanceof Array)) return false;
 
-  return !value || target.every(value => value.indexOf(value) !== -1);
+  return !value || target.every(v => value.indexOf(v) !== -1);
 }
 
 /**
@@ -842,10 +879,11 @@ export function isArrayContainerOf(value: any[], target: any[]) {
  * @param target The array of target values
  * @returns True if value array does not contain any of the given target values, false otherwise.
  */
-export function isArrayNotContainerOf(array: any[], values: any[]) {
-  if (!(array instanceof Array)) return false;
 
-  return !array || values.every(value => array.indexOf(value) === -1);
+export function isNotArrayContainerOf(value: any[], target: any[]) {
+  if (!(value instanceof Array)) return false;
+
+  return !isArrayContainerOf(value, target);
 }
 
 /**
@@ -855,10 +893,8 @@ export function isArrayNotContainerOf(array: any[], values: any[]) {
  * @param value The array being checked.
  * @returns True if given array is not empty, false otherwise.
  */
-export function isArrayNotEmpty(array: any[]) {
-  if (!(array instanceof Array)) return false;
-
-  return array instanceof Array && array.length > 0;
+export function isArrayNotEmpty(value: any[]) {
+  return !isArrayEmpty(value);
 }
 
 /**
@@ -869,10 +905,8 @@ export function isArrayNotEmpty(array: any[]) {
  * @param target The minimum size of the array
  * @returns True if array's length is greater than the target number, false otherwise.
  */
-export function isArraySizeGreaterThan(array: any[], target: number) {
-  if (!(array instanceof Array)) return false;
-
-  return array instanceof Array && array.length >= target;
+export function isArraySizeGreaterThan(value: any[], target: number) {
+  return isArray(value) ? value.length > target : false;
 }
 
 /**
@@ -883,10 +917,8 @@ export function isArraySizeGreaterThan(array: any[], target: number) {
  * @param target The maximum size of the array
  * @returns True if array's length is less than the target number, false otherwise.
  */
-export function isArraySizeLessThan(array: any[], target: number) {
-  if (!(array instanceof Array)) return false;
-
-  return array instanceof Array && array.length <= target;
+export function isArraySizeLessThan(value: any[], target: number) {
+  return isArray(value) ? value.length < target : false;
 }
 
 /**
