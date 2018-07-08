@@ -980,3 +980,20 @@ describe("isByteLength", () => {
     expect(isByteLength('abc', 1, 2)).to.be.false;
   });
 });
+
+import { isInstanceOf } from "@fireflysemantics/is";
+
+class InstanceOfCheck {
+
+}
+
+const test = new InstanceOfCheck();
+
+describe("isInstanceOf", () => {
+  it("should return true for ISO Date String instances", () => {
+    expect(isInstanceOf(test, InstanceOfCheck)).to.be.true;
+  });
+  it("should return false for non valid byte length strings", () => {
+    expect(isInstanceOf('abc', InstanceOfCheck)).to.be.false;
+  });
+});

@@ -943,12 +943,12 @@ export function isArrayUnique(array: any[]) {
  * @returns True if the value is an instance of the specified object, false otherwise.
  */
 export function isInstanceOf(
-  object: any,
+  value: any,
   target: new (...args: any[]) => any
 ) {
   return (
     target &&
     typeof target === "function" &&
-    object instanceof target
+    value instanceof target
   );
 }
