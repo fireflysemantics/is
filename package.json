@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Typescript type and validation checking utility library",
   "main": "target/is.js",
   "typings": "target/is.d.ts",
@@ -33,7 +33,6 @@
     "@types/underscore": "^1.8.8",
     "btoa": "^1.2.1",
     "del-cli": "^1.1.0",
-    "istanbul": "^0.4.5",
     "jest": "^23.6.0",
     "source-map-support": "^0.5.6",
     "ts-jest": "^23.10.4",

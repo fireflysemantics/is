@@ -74,6 +74,15 @@ describe("isDefined", () => {
   });
 });
 
+import { isUndefined } from "@fs/is";
+
+describe("isUndefined", () => {
+  it("should return true", () => {
+    expect(isUndefined(undefined)).toBeTruthy();
+    expect(isUndefined(null)).toBeTruthy();
+  });
+});
+
 import { isDate } from "@fs/is";
 
 describe("isDate", () => {
