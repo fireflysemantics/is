@@ -1,158 +1,155 @@
-import {expect} from "chai";
-import "mocha";
-
 /**
- * Unit tests.
+ * Jest Unit tests.
  */
 
-import { isBoolean } from "@fireflysemantics/is";
+import { isBoolean } from "@fs/is";
 
 describe("isBoolean", () => {
   it("should return true", () => {
-    expect(isBoolean(true)).to.be.true;
-    expect(isBoolean(false)).to.be.true;
-    expect(isBoolean(new Boolean("True"))).to.be.true;
-    expect(isBoolean(new Boolean("False"))).to.be.true;
-    expect(isBoolean(new Boolean(0))).to.be.true;
-    expect(isBoolean(new Boolean(1))).to.be.true;
+    expect(isBoolean(true)).toBeTruthy();
+    expect(isBoolean(false)).toBeTruthy();
+    expect(isBoolean(new Boolean("True"))).toBeTruthy();
+    expect(isBoolean(new Boolean("False"))).toBeTruthy();
+    expect(isBoolean(new Boolean(0))).toBeTruthy();
+    expect(isBoolean(new Boolean(1))).toBeTruthy();
   });
 
   it("should return false", () => {
-    expect(isBoolean({})).to.be.false;
-    expect(isBoolean("foo")).to.be.false;
-    expect(isBoolean("")).to.be.false;
-    expect(isBoolean(0)).to.be.false;
-    expect(isBoolean(-0)).to.be.false;
-    expect(isBoolean(1)).to.be.false;
-    expect(isBoolean(-1)).to.be.false;
-    expect(isBoolean(Infinity)).to.be.false;
-    expect(isBoolean(-Infinity)).to.be.false;
-    expect(isBoolean(NaN)).to.be.false;
-    expect(isBoolean(new Date())).to.be.false;
+    expect(isBoolean({})).toBeFalsy();
+    expect(isBoolean("foo")).toBeFalsy();
+    expect(isBoolean("")).toBeFalsy();
+    expect(isBoolean(0)).toBeFalsy();
+    expect(isBoolean(-0)).toBeFalsy();
+    expect(isBoolean(1)).toBeFalsy();
+    expect(isBoolean(-1)).toBeFalsy();
+    expect(isBoolean(Infinity)).toBeFalsy();
+    expect(isBoolean(-Infinity)).toBeFalsy();
+    expect(isBoolean(NaN)).toBeFalsy();
+    expect(isBoolean(new Date())).toBeFalsy();
   });
 });
 
-import { isArray } from "@fireflysemantics/is";
+import { isArray } from "@fs/is";
 
 describe("isArray", () => {
   it("should return true", () => {
-    expect(isArray([2])).to.be.true;
-    expect(isArray(['a'])).to.be.true;
+    expect(isArray([2])).toBeTruthy();
+    expect(isArray(['a'])).toBeTruthy();
   });
   it("should return true", () => {
-    expect(isArray("a")).to.be.false;
-    expect(isArray(1)).to.be.false;
+    expect(isArray("a")).toBeFalsy();
+    expect(isArray(1)).toBeFalsy();
   });
 });
 
-import { isArrayEmpty } from "@fireflysemantics/is";
+import { isArrayEmpty } from "@fs/is";
 
 describe("isArrayEmpty", () => {
   it("should return true", () => {
-    expect(isArrayEmpty([])).to.be.true;
+    expect(isArrayEmpty([])).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArrayEmpty([2])).to.be.false;
-    expect(isArrayEmpty(['a'])).to.be.false;
+    expect(isArrayEmpty([2])).toBeFalsy();
+    expect(isArrayEmpty(['a'])).toBeFalsy();
   });
 });
 
-import { isDefined } from "@fireflysemantics/is";
+import { isDefined } from "@fs/is";
 
 describe("isDefined", () => {
   it("should return true", () => {
-    expect(isDefined({})).to.be.true;
-    expect(isDefined("foo")).to.be.true;
-    expect(isDefined("")).to.be.true;
-    expect(isDefined(0)).to.be.true;
-    expect(isDefined(-0)).to.be.true;
-    expect(isDefined(Infinity)).to.be.true;
-    expect(isDefined(-Infinity)).to.be.true;
-    expect(isDefined(NaN)).to.be.true;
-    expect(isDefined(new Date())).to.be.true;
+    expect(isDefined({})).toBeTruthy();
+    expect(isDefined("foo")).toBeTruthy();
+    expect(isDefined("")).toBeTruthy();
+    expect(isDefined(0)).toBeTruthy();
+    expect(isDefined(-0)).toBeTruthy();
+    expect(isDefined(Infinity)).toBeTruthy();
+    expect(isDefined(-Infinity)).toBeTruthy();
+    expect(isDefined(NaN)).toBeTruthy();
+    expect(isDefined(new Date())).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isDefined(undefined)).to.be.false;
-    expect(isDefined(null)).to.be.false;
+    expect(isDefined(undefined)).toBeFalsy();
+    expect(isDefined(null)).toBeFalsy();
   });
 });
 
-import { isDate } from "@fireflysemantics/is";
+import { isDate } from "@fs/is";
 
 describe("isDate", () => {
   it("should return true", () => {
-    expect(isDate(new Date())).to.be.true;
-    expect(isDate(new Date("12/22/1734"))).to.be.true;
+    expect(isDate(new Date())).toBeTruthy();
+    expect(isDate(new Date("12/22/1734"))).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isDate({})).to.be.false;
-    expect(isDate([])).to.be.false;
-    expect(isDate(6)).to.be.false;
-    expect(isDate(undefined)).to.be.false;
-    expect(isDate(null)).to.be.false;
-    expect(isDate(true)).to.be.false;
-    expect(isDate(false)).to.be.false;
-    expect(isDate('fooboo')).to.be.false;
-    expect(isDate(()=>{})).to.be.false;
-    expect(isDate(/x/g)).to.be.false;
-    expect(isDate(new RegExp('c', 'g'))).to.be.false;
+    expect(isDate({})).toBeFalsy();
+    expect(isDate([])).toBeFalsy();
+    expect(isDate(6)).toBeFalsy();
+    expect(isDate(undefined)).toBeFalsy();
+    expect(isDate(null)).toBeFalsy();
+    expect(isDate(true)).toBeFalsy();
+    expect(isDate(false)).toBeFalsy();
+    expect(isDate('fooboo')).toBeFalsy();
+    expect(isDate(()=>{})).toBeFalsy();
+    expect(isDate(/x/g)).toBeFalsy();
+    expect(isDate(new RegExp('c', 'g'))).toBeFalsy();
   });
 });
 
-import { isString } from "@fireflysemantics/is";
+import { isString } from "@fs/is";
 
 describe("isString", () => {
   it("should return true for string instances", () => {
-    expect(isString(new Object('pitythefoo'))).to.be.true;
-    expect(isString('pitythefoo')).to.be.true;
+    expect(isString(new Object('pitythefoo'))).toBeTruthy();
+    expect(isString('pitythefoo')).toBeTruthy();
   });
   it("should return false for non String instances", () => {
-    expect(isString({})).to.be.false;
-    expect(isString([])).to.be.false;
-    expect(isString(6)).to.be.false;
-    expect(isString(undefined)).to.be.false;
-    expect(isString(null)).to.be.false;
-    expect(isString(NaN)).to.be.false;
-    expect(isString(Infinity)).to.be.false;
-    expect(isString(new Number(5))).to.be.false;
-    expect(isString(true)).to.be.false;
-    expect(isString(true)).to.be.false;
-    expect(isString(false)).to.be.false;
-    expect(isString(()=>{})).to.be.false;
-    expect(isString(/x/g)).to.be.false;
-    expect(isString(new RegExp('c', 'g'))).to.be.false;
-    expect(isString(new Date())).to.be.false;
+    expect(isString({})).toBeFalsy();
+    expect(isString([])).toBeFalsy();
+    expect(isString(6)).toBeFalsy();
+    expect(isString(undefined)).toBeFalsy();
+    expect(isString(null)).toBeFalsy();
+    expect(isString(NaN)).toBeFalsy();
+    expect(isString(Infinity)).toBeFalsy();
+    expect(isString(new Number(5))).toBeFalsy();
+    expect(isString(true)).toBeFalsy();
+    expect(isString(true)).toBeFalsy();
+    expect(isString(false)).toBeFalsy();
+    expect(isString(()=>{})).toBeFalsy();
+    expect(isString(/x/g)).toBeFalsy();
+    expect(isString(new RegExp('c', 'g'))).toBeFalsy();
+    expect(isString(new Date())).toBeFalsy();
   });
 });
 
-import { isISODateString } from "@fireflysemantics/is";
+import { isISODateString } from "@fs/is";
 
 describe("isISODateString", () => {
   it("should return true for ISO Date String instances", () => {
-    expect(isISODateString(new Object('2018-06-04T12:33:00.000Z'))).to.be.true;
-    expect(isISODateString(new Date('2018-06-04T12:33:00.000Z').toISOString())).to.be.true;
-    expect(isISODateString(new Date().toISOString())).to.be.true;
+    expect(isISODateString(new Object('2018-06-04T12:33:00.000Z'))).toBeTruthy();
+    expect(isISODateString(new Date('2018-06-04T12:33:00.000Z').toISOString())).toBeTruthy();
+    expect(isISODateString(new Date().toISOString())).toBeTruthy();
   });
   it("should return false for non ISO Date String instances", () => {
-    expect(isISODateString({})).to.be.false;
-    expect(isISODateString([])).to.be.false;
-    expect(isISODateString(6)).to.be.false;
-    expect(isISODateString(undefined)).to.be.false;
-    expect(isISODateString(null)).to.be.false;
-    expect(isISODateString(NaN)).to.be.false;
-    expect(isISODateString(Infinity)).to.be.false;
-    expect(isISODateString(new Number(5))).to.be.false;
-    expect(isISODateString(true)).to.be.false;
-    expect(isISODateString(true)).to.be.false;
-    expect(isISODateString(false)).to.be.false;
-    expect(isISODateString(()=>{})).to.be.false;
-    expect(isISODateString(/x/g)).to.be.false;
-    expect(isISODateString(new RegExp('c', 'g'))).to.be.false;
-    expect(isISODateString(new Date())).to.be.false;
+    expect(isISODateString({})).toBeFalsy();
+    expect(isISODateString([])).toBeFalsy();
+    expect(isISODateString(6)).toBeFalsy();
+    expect(isISODateString(undefined)).toBeFalsy();
+    expect(isISODateString(null)).toBeFalsy();
+    expect(isISODateString(NaN)).toBeFalsy();
+    expect(isISODateString(Infinity)).toBeFalsy();
+    expect(isISODateString(new Number(5))).toBeFalsy();
+    expect(isISODateString(true)).toBeFalsy();
+    expect(isISODateString(true)).toBeFalsy();
+    expect(isISODateString(false)).toBeFalsy();
+    expect(isISODateString(()=>{})).toBeFalsy();
+    expect(isISODateString(/x/g)).toBeFalsy();
+    expect(isISODateString(new RegExp('c', 'g'))).toBeFalsy();
+    expect(isISODateString(new Date())).toBeFalsy();
   });
 });
 
-import { isEnum } from "@fireflysemantics/is";
+import { isEnum } from "@fs/is";
 
 describe("isEnum", () => {
   
@@ -160,14 +157,14 @@ describe("isEnum", () => {
   const two = { two: 2 };
 
   it(`should return true`, () => {
-    expect(isEnum(1, one)).to.be.true;
+    expect(isEnum(1, one)).toBeTruthy();
   });
   it(`should return false`, () => {
-    expect(isEnum(1, two)).to.be.false;
+    expect(isEnum(1, two)).toBeFalsy();
   });
 });
 
-import { isObject } from "@fireflysemantics/is";
+import { isObject } from "@fs/is";
 
 describe("isObject", () => {
   
@@ -175,813 +172,813 @@ describe("isObject", () => {
   const two = { two: "2" };
 
   it(`should return true`, () => {
-    expect(isObject(one)).to.be.true;
-    expect(isObject(two)).to.be.true;
+    expect(isObject(one)).toBeTruthy();
+    expect(isObject(two)).toBeTruthy();
   });
   it(`should return false`, () => {
-    expect(isObject(1)).to.be.false;
-    expect(isObject("a")).to.be.false;
-    expect(isObject(()=>{})).to.be.false;
-    expect(isObject(NaN)).to.be.false;
-    expect(isObject(undefined)).to.be.false;
-    expect(isObject(null)).to.be.false;
+    expect(isObject(1)).toBeFalsy();
+    expect(isObject("a")).toBeFalsy();
+    expect(isObject(()=>{})).toBeFalsy();
+    expect(isObject(NaN)).toBeFalsy();
+    expect(isObject(undefined)).toBeFalsy();
+    expect(isObject(null)).toBeFalsy();
   });
 });
 
-import { isNumber, IsNumberOptions } from "@fireflysemantics/is";
+import { isNumber, IsNumberOptions } from "@fs/is";
 
 describe("isNumber", () => {
 
   const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
 
   it("should return true for numbers that are valid", () => {
-    expect(isNumber(2)).to.be.true;
-    expect(isNumber(NaN, options)).to.be.true;
-    expect(isNumber(Infinity, options)).to.be.true;
-    expect(isNumber(-Infinity, options)).to.be.true;
+    expect(isNumber(2)).toBeTruthy();
+    expect(isNumber(NaN, options)).toBeTruthy();
+    expect(isNumber(Infinity, options)).toBeTruthy();
+    expect(isNumber(-Infinity, options)).toBeTruthy();
   });
 
   it("should return false non numbers", () => {
-    expect(isNumber(NaN)).to.be.false;
-    expect(isNumber(Infinity)).to.be.false;
-    expect(isNumber(-Infinity)).to.be.false;
+    expect(isNumber(NaN)).toBeFalsy();
+    expect(isNumber(Infinity)).toBeFalsy();
+    expect(isNumber(-Infinity)).toBeFalsy();
   });
 });
 
-import { isInt } from "@fireflysemantics/is";
+import { isInt } from "@fs/is";
 
 describe("isInt", () => {
 
   it("should return true for numbers that are valid", () => {
-    expect(isInt(2)).to.be.true;
+    expect(isInt(2)).toBeTruthy();
   });
   it("should return false non numbers", () => {
-    expect(isInt(NaN)).to.be.false;
-    expect(isInt(Infinity)).to.be.false;
-    expect(isInt(-Infinity)).to.be.false;
+    expect(isInt(NaN)).toBeFalsy();
+    expect(isInt(Infinity)).toBeFalsy();
+    expect(isInt(-Infinity)).toBeFalsy();
   });
 });
 
-import { isEqualTo } from "@fireflysemantics/is";
+import { isEqualTo } from "@fs/is";
 
 describe("isEqualTo", () => {
 
   const options = {};
 
   it("should return true for numbers that are valid", () => {
-    expect(isEqualTo(options, options)).to.be.true;
+    expect(isEqualTo(options, options)).toBeTruthy();
   });
   it("should return false non numbers", () => {
-    expect(isEqualTo(options, NaN)).to.be.false;
-    expect(isEqualTo(options, Infinity)).to.be.false;
-    expect(isEqualTo(options, -Infinity)).to.be.false;
+    expect(isEqualTo(options, NaN)).toBeFalsy();
+    expect(isEqualTo(options, Infinity)).toBeFalsy();
+    expect(isEqualTo(options, -Infinity)).toBeFalsy();
   });
 });
 
-import { isNotEqualTo } from "@fireflysemantics/is";
+import { isNotEqualTo } from "@fs/is";
 
 describe("isNotEqualTo", () => {
 
   const options = {};
 
   it("should return false for things that are equal", () => {
-    expect(isNotEqualTo(options, options)).to.be.false;
+    expect(isNotEqualTo(options, options)).toBeFalsy();
   });
 
   it("should return true for things that are not equal", () => {
-    expect(isNotEqualTo(options, NaN)).to.be.true;
-    expect(isNotEqualTo(options, Infinity)).to.be.true;
-    expect(isNotEqualTo(options, -Infinity)).to.be.true;
+    expect(isNotEqualTo(options, NaN)).toBeTruthy();
+    expect(isNotEqualTo(options, Infinity)).toBeTruthy();
+    expect(isNotEqualTo(options, -Infinity)).toBeTruthy();
   });
 });
 
-import { isEmpty } from "@fireflysemantics/is";
+import { isEmpty } from "@fs/is";
 
 describe("isEmpty", () => {  
   it(`should return true for empty values`, () => {
-    expect(isEmpty("")).to.be.true;
-    expect(isEmpty(null)).to.be.true;
-    expect(isEmpty(undefined)).to.be.true;
+    expect(isEmpty("")).toBeTruthy();
+    expect(isEmpty(null)).toBeTruthy();
+    expect(isEmpty(undefined)).toBeTruthy();
   });
 
   it(`should return false for non empty values`, () => {
-    expect(isEmpty("Not empty")).to.be.false;
-    expect(isEmpty(NaN)).to.be.false;
+    expect(isEmpty("Not empty")).toBeFalsy();
+    expect(isEmpty(NaN)).toBeFalsy();
   });
 });
 
-import { isNotEmpty } from "@fireflysemantics/is";
+import { isNotEmpty } from "@fs/is";
 
 describe("isNotEmpty", () => {  
   it(`should return true for non empty values`, () => {
-    expect(isNotEmpty("Not empty")).to.be.true;
-    expect(isNotEmpty(NaN)).to.be.true;
+    expect(isNotEmpty("Not empty")).toBeTruthy();
+    expect(isNotEmpty(NaN)).toBeTruthy();
   });
 
   it(`should return false for empty values`, () => {
-    expect(isNotEmpty("")).to.be.false;
-    expect(isNotEmpty(null)).to.be.false;
-    expect(isNotEmpty(undefined)).to.be.false;
+    expect(isNotEmpty("")).toBeFalsy();
+    expect(isNotEmpty(null)).toBeFalsy();
+    expect(isNotEmpty(undefined)).toBeFalsy();
   });
 });
 
-import { isIn } from "@fireflysemantics/is";
+import { isIn } from "@fs/is";
 
 describe("isIn", () => {
 
   it(`should return true when the value is in the array`, () => {
-    expect(isIn(null, [null])).to.be.true;
-    expect(isIn(undefined, [undefined])).to.be.true;
-    expect(isIn(2, [2])).to.be.true;
-    expect(isIn('a', ['a', 'b'])).to.be.true;
-    expect(isIn('a', ['a'])).to.be.true;
-    expect(isIn([2,3], [[2,3]])).to.be.true;
+    expect(isIn(null, [null])).toBeTruthy();
+    expect(isIn(undefined, [undefined])).toBeTruthy();
+    expect(isIn(2, [2])).toBeTruthy();
+    expect(isIn('a', ['a', 'b'])).toBeTruthy();
+    expect(isIn('a', ['a'])).toBeTruthy();
+    expect(isIn([2,3], [[2,3]])).toBeTruthy();
   });
   it(`should return false when the value is not in the array`, () => {
-    expect(isIn('a', ['b'])).to.be.false;
-    expect(isIn([2,4], [[2,3]])).to.be.false;
+    expect(isIn('a', ['b'])).toBeFalsy();
+    expect(isIn([2,4], [[2,3]])).toBeFalsy();
   });
 });
 
-import { isNotIn } from "@fireflysemantics/is";
+import { isNotIn } from "@fs/is";
 
 describe("isNotIn", () => {
 
   it(`should return false when the value is in the array`, () => {
-    expect(isNotIn(2, [2])).to.be.false;
-    expect(isNotIn('a', ['a', 'b'])).to.be.false;
-    expect(isNotIn('a', ['a'])).to.be.false;
-    expect(isNotIn([2,3], [[2,3]])).to.be.false;
+    expect(isNotIn(2, [2])).toBeFalsy();
+    expect(isNotIn('a', ['a', 'b'])).toBeFalsy();
+    expect(isNotIn('a', ['a'])).toBeFalsy();
+    expect(isNotIn([2,3], [[2,3]])).toBeFalsy();
   });
   it(`should return true when the value is not in the array`, () => {
-    expect(isNotIn('a', ['b'])).to.be.true;
-    expect(isNotIn([2,4], [[2,3]])).to.be.true;
+    expect(isNotIn('a', ['b'])).toBeTruthy();
+    expect(isNotIn([2,4], [[2,3]])).toBeTruthy();
   });
 });
 
-import { isDivisibleBy } from "@fireflysemantics/is";
+import { isDivisibleBy } from "@fs/is";
 
 describe("isDivisibleBy", () => {
 
   it(`should be divisible by`, () => {
-    expect(isDivisibleBy(4, 2)).to.be.true;
+    expect(isDivisibleBy(4, 2)).toBeTruthy();
   });
   it(`should not be divisible by`, () => {
-    expect(isDivisibleBy(5, 2)).to.be.false;
+    expect(isDivisibleBy(5, 2)).toBeFalsy();
   });
 });
 
-import { isPositive } from "@fireflysemantics/is";
+import { isPositive } from "@fs/is";
 
 describe("isDivisibleBy", () => {
 
   it(`should be positive`, () => {
-    expect(isPositive(4)).to.be.true;
+    expect(isPositive(4)).toBeTruthy();
   });
   it(`should not be positive`, () => {
-    expect(isPositive(-0)).to.be.false;
-    expect(isPositive(0)).to.be.false;
-    expect(isPositive(-5)).to.be.false;
+    expect(isPositive(-0)).toBeFalsy();
+    expect(isPositive(0)).toBeFalsy();
+    expect(isPositive(-5)).toBeFalsy();
   });
 });
 
-import { isNegative } from "@fireflysemantics/is";
+import { isNegative } from "@fs/is";
 
 describe("isDivisibleBy", () => {
 
   it(`should be divisible by`, () => {
-    expect(isNegative(4)).to.be.false;
+    expect(isNegative(4)).toBeFalsy();
   });
   it(`should not be divisible by`, () => {
-    expect(isNegative(-0)).to.be.true;
-    expect(isNegative(0)).to.be.true;
-    expect(isNegative(-5)).to.be.true;
+    expect(isNegative(-0)).toBeTruthy();
+    expect(isNegative(0)).toBeTruthy();
+    expect(isNegative(-5)).toBeTruthy();
   });
 });
 
-import { isGreaterThan } from "@fireflysemantics/is";
+import { isGreaterThan } from "@fs/is";
 
 describe("isGreaterThan", () => {
 
   it(`should be true`, () => {
-    expect(isGreaterThan(8, 6)).to.be.true;
+    expect(isGreaterThan(8, 6)).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isGreaterThan(5, 5)).to.be.false;
-    expect(isGreaterThan(0, 0)).to.be.false;
-    expect(isGreaterThan(3, 4)).to.be.false;
+    expect(isGreaterThan(5, 5)).toBeFalsy();
+    expect(isGreaterThan(0, 0)).toBeFalsy();
+    expect(isGreaterThan(3, 4)).toBeFalsy();
   });
 });
 
-import { isLessThan } from "@fireflysemantics/is";
+import { isLessThan } from "@fs/is";
 
 describe("isLessThan", () => {
 
   it(`should be false`, () => {
-    expect(isLessThan(8, 6)).to.be.false;
-    expect(isLessThan(5, 5)).to.be.false;
-    expect(isLessThan(0, 0)).to.be.false;
+    expect(isLessThan(8, 6)).toBeFalsy();
+    expect(isLessThan(5, 5)).toBeFalsy();
+    expect(isLessThan(0, 0)).toBeFalsy();
   });
   it(`should be true`, () => {
-    expect(isLessThan(3, 4)).to.be.true;
+    expect(isLessThan(3, 4)).toBeTruthy();
   });
 });
 
-import { isAfterInstant } from "@fireflysemantics/is";
+import { isAfterInstant } from "@fs/is";
 
 describe("isAfterInstant", () => {
 
   it(`should be true`, () => {
-    expect(isAfterInstant(new Date(8), new Date(6))).to.be.true;
+    expect(isAfterInstant(new Date(8), new Date(6))).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isAfterInstant(new Date(5), new Date(5))).to.be.false;
-    expect(isAfterInstant(new Date(0), new Date(0))).to.be.false;
-    expect(isAfterInstant(new Date(3), new Date(4))).to.be.false;
+    expect(isAfterInstant(new Date(5), new Date(5))).toBeFalsy();
+    expect(isAfterInstant(new Date(0), new Date(0))).toBeFalsy();
+    expect(isAfterInstant(new Date(3), new Date(4))).toBeFalsy();
   });
 });
 
-import { isBeforeInstant } from "@fireflysemantics/is";
+import { isBeforeInstant } from "@fs/is";
 
 describe("isBeforeInstant", () => {
 
   it(`should be false`, () => {
-    expect(isBeforeInstant(new Date(8), new Date(6))).to.be.false;
-    expect(isBeforeInstant(new Date(5), new Date(5))).to.be.false;
-    expect(isBeforeInstant(new Date(0), new Date(0))).to.be.false;
+    expect(isBeforeInstant(new Date(8), new Date(6))).toBeFalsy();
+    expect(isBeforeInstant(new Date(5), new Date(5))).toBeFalsy();
+    expect(isBeforeInstant(new Date(0), new Date(0))).toBeFalsy();
   });
   it(`should be true`, () => {
-    expect(isBeforeInstant(new Date(3), new Date(4))).to.be.true;
+    expect(isBeforeInstant(new Date(3), new Date(4))).toBeTruthy();
   });
 });
 
-import { isSameInstant } from "@fireflysemantics/is";
+import { isSameInstant } from "@fs/is";
 
 describe("isSameInstant", () => {
 
   it(`should be true`, () => {
-    expect(isSameInstant(new Date(5), new Date(5))).to.be.true;
-    expect(isSameInstant(new Date(0), new Date(0))).to.be.true;
+    expect(isSameInstant(new Date(5), new Date(5))).toBeTruthy();
+    expect(isSameInstant(new Date(0), new Date(0))).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isSameInstant(new Date(3), new Date(4))).to.be.false;
-    expect(isSameInstant(new Date(4), new Date(3))).to.be.false;
+    expect(isSameInstant(new Date(3), new Date(4))).toBeFalsy();
+    expect(isSameInstant(new Date(4), new Date(3))).toBeFalsy();
   });
 });
 
-import { isBooleanString } from "@fireflysemantics/is";
+import { isBooleanString } from "@fs/is";
 
 describe("isBooleanString", () => {
 
   it(`should be true`, () => {
-    expect(isBooleanString("true")).to.be.true;
-    expect(isBooleanString("false")).to.be.true;
-    expect(isBooleanString("1")).to.be.true;
-    expect(isBooleanString("0")).to.be.true;
+    expect(isBooleanString("true")).toBeTruthy();
+    expect(isBooleanString("false")).toBeTruthy();
+    expect(isBooleanString("1")).toBeTruthy();
+    expect(isBooleanString("0")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isBooleanString("10")).to.be.false;
-    expect(isBooleanString("01")).to.be.false;
-    expect(isBooleanString("TRUE")).to.be.false;
-    expect(isBooleanString("FALSE")).to.be.false;
-    expect(isBooleanString("falsetrue")).to.be.false;
+    expect(isBooleanString("10")).toBeFalsy();
+    expect(isBooleanString("01")).toBeFalsy();
+    expect(isBooleanString("TRUE")).toBeFalsy();
+    expect(isBooleanString("FALSE")).toBeFalsy();
+    expect(isBooleanString("falsetrue")).toBeFalsy();
   });
 });
 
-import { isNumberString } from "@fireflysemantics/is";
+import { isNumberString } from "@fs/is";
 
 const options:IsNumberOptions = { allowNaN: true, allowInfinity: true };
 
 describe("isNumberString", () => {
 
   it(`should be true`, () => {
-    expect(isNumberString("2")).to.be.true;
-    expect(isNumberString("0")).to.be.true;
-    expect(isNumberString("10")).to.be.true;
-    expect(isNumberString("01")).to.be.true;
-    expect(isNumberString("Infinity", options)).to.be.true;
-    expect(isNumberString("NaN", options)).to.be.true;
+    expect(isNumberString("2")).toBeTruthy();
+    expect(isNumberString("0")).toBeTruthy();
+    expect(isNumberString("10")).toBeTruthy();
+    expect(isNumberString("01")).toBeTruthy();
+    expect(isNumberString("Infinity", options)).toBeTruthy();
+    expect(isNumberString("NaN", options)).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isNumberString("TRUE")).to.be.false;
-    expect(isNumberString("FALSE")).to.be.false;
-    expect(isNumberString("falsetrue")).to.be.false;
-    expect(isNumberString("Infinity")).to.be.false;
-    expect(isNumberString("NaN")).to.be.false;
+    expect(isNumberString("TRUE")).toBeFalsy();
+    expect(isNumberString("FALSE")).toBeFalsy();
+    expect(isNumberString("falsetrue")).toBeFalsy();
+    expect(isNumberString("Infinity")).toBeFalsy();
+    expect(isNumberString("NaN")).toBeFalsy();
   });
 });
 
-import { isSubString } from "@fireflysemantics/is";
+import { isSubString } from "@fs/is";
 
 describe("isSubString", () => {
 
   it(`should be true`, () => {
-    expect(isSubString("2", "22")).to.be.true;
-    expect(isSubString("foo", "fooboo")).to.be.true;
+    expect(isSubString("2", "22")).toBeTruthy();
+    expect(isSubString("foo", "fooboo")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isSubString("TRUE", "FALSE")).to.be.false;
-    expect(isSubString("3", "2")).to.be.false;
+    expect(isSubString("TRUE", "FALSE")).toBeFalsy();
+    expect(isSubString("3", "2")).toBeFalsy();
   });
 });
 
-import { isSuperString } from "@fireflysemantics/is";
+import { isSuperString } from "@fs/is";
 
 describe("isSuperString", () => {
 
   it(`should be true`, () => {
-    expect(isSuperString("22", "2")).to.be.true;
-    expect(isSuperString("fooboo", "foo")).to.be.true;
+    expect(isSuperString("22", "2")).toBeTruthy();
+    expect(isSuperString("fooboo", "foo")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isSuperString("TRUE", "FALSE")).to.be.false;
-    expect(isSuperString("33", "2")).to.be.false;
+    expect(isSuperString("TRUE", "FALSE")).toBeFalsy();
+    expect(isSuperString("33", "2")).toBeFalsy();
   });
 });
 
-import { isNotSubString } from "@fireflysemantics/is";
+import { isNotSubString } from "@fs/is";
 
 describe("isNotSubString", () => {
 
   it(`should be true`, () => {
-    expect(isNotSubString("TRUE", "FALSE")).to.be.true;
-    expect(isNotSubString("3", "2")).to.be.true;
+    expect(isNotSubString("TRUE", "FALSE")).toBeTruthy();
+    expect(isNotSubString("3", "2")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isNotSubString("2", "22")).to.be.false;
-    expect(isNotSubString("foo", "fooboo")).to.be.false;
+    expect(isNotSubString("2", "22")).toBeFalsy();
+    expect(isNotSubString("foo", "fooboo")).toBeFalsy();
   });
 });
 
-import { isNotSuperString } from "@fireflysemantics/is";
+import { isNotSuperString } from "@fs/is";
 
 describe("isNotSuperString", () => {
 
   it(`should be true`, () => {
-    expect(isNotSuperString("TRUE", "FALSE")).to.be.true;
-    expect(isNotSuperString("3", "2")).to.be.true;
+    expect(isNotSuperString("TRUE", "FALSE")).toBeTruthy();
+    expect(isNotSuperString("3", "2")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isNotSuperString("22", "2")).to.be.false;
-    expect(isNotSuperString("fooboo", "boo")).to.be.false;
+    expect(isNotSuperString("22", "2")).toBeFalsy();
+    expect(isNotSuperString("fooboo", "boo")).toBeFalsy();
   });
 });
 
-import { isAlpha } from "@fireflysemantics/is";
+import { isAlpha } from "@fs/is";
 
 describe("isAlpha", () => {
 
   it(`should be true`, () => {
-    expect(isAlpha("a")).to.be.true;
-    expect(isAlpha("B")).to.be.true;
+    expect(isAlpha("a")).toBeTruthy();
+    expect(isAlpha("B")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isAlpha("2")).to.be.false;
-    expect(isAlpha("我")).to.be.false;
+    expect(isAlpha("2")).toBeFalsy();
+    expect(isAlpha("我")).toBeFalsy();
   });
 });
 
-import { isAlphanumeric } from "@fireflysemantics/is";
+import { isAlphanumeric } from "@fs/is";
 
 describe("isAlphanumeric", () => {
 
   it(`should be true`, () => {
-    expect(isAlphanumeric("a")).to.be.true;
-    expect(isAlphanumeric("B")).to.be.true;
-    expect(isAlphanumeric("2")).to.be.true;
+    expect(isAlphanumeric("a")).toBeTruthy();
+    expect(isAlphanumeric("B")).toBeTruthy();
+    expect(isAlphanumeric("2")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isAlphanumeric("我")).to.be.false;
-    expect(isAlphanumeric("$")).to.be.false;
-    expect(isAlphanumeric("&")).to.be.false;
-    expect(isAlphanumeric("@")).to.be.false;
-    expect(isAlphanumeric("!")).to.be.false;
+    expect(isAlphanumeric("我")).toBeFalsy();
+    expect(isAlphanumeric("$")).toBeFalsy();
+    expect(isAlphanumeric("&")).toBeFalsy();
+    expect(isAlphanumeric("@")).toBeFalsy();
+    expect(isAlphanumeric("!")).toBeFalsy();
   });
 });
 
-import { isAscii } from "@fireflysemantics/is";
+import { isAscii } from "@fs/is";
 
 describe("isAscii", () => {
 
   it(`should be true`, () => {
-    expect(isAscii("2")).to.be.true;
-    expect(isAscii("@")).to.be.true;
-    expect(isAscii("&")).to.be.true;
-    expect(isAscii("$")).to.be.true;
-    expect(isAscii("+")).to.be.true;
-    expect(isAscii("-")).to.be.true;
+    expect(isAscii("2")).toBeTruthy();
+    expect(isAscii("@")).toBeTruthy();
+    expect(isAscii("&")).toBeTruthy();
+    expect(isAscii("$")).toBeTruthy();
+    expect(isAscii("+")).toBeTruthy();
+    expect(isAscii("-")).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isAscii("我")).to.be.false;
+    expect(isAscii("我")).toBeFalsy();
   });
 });
 
-import { isBase64 } from "@fireflysemantics/is";
+import { isBase64 } from "@fs/is";
 const btoa = require('btoa');
 
 describe("isAscii", () => {
 
   it(`should be true`, () => {
-    expect(isBase64(btoa("2"))).to.be.true;
-    expect(isBase64(btoa("@"))).to.be.true;
-    expect(isBase64(btoa("&"))).to.be.true;
-    expect(isBase64(btoa("$"))).to.be.true;
-    expect(isBase64(btoa("+"))).to.be.true;
-    expect(isBase64(btoa("-"))).to.be.true;
+    expect(isBase64(btoa("2"))).toBeTruthy();
+    expect(isBase64(btoa("@"))).toBeTruthy();
+    expect(isBase64(btoa("&"))).toBeTruthy();
+    expect(isBase64(btoa("$"))).toBeTruthy();
+    expect(isBase64(btoa("+"))).toBeTruthy();
+    expect(isBase64(btoa("-"))).toBeTruthy();
   });
   it(`should be false`, () => {
-    expect(isBase64("我")).to.be.false;
+    expect(isBase64("我")).toBeFalsy();
   });
 });
 
-import { isCreditCard } from "@fireflysemantics/is";
+import { isCreditCard } from "@fs/is";
 
 describe("isCreditCard", () => {
   it("should return true", () => {
-    expect(isCreditCard('378247928520957')).to.be.true;
-    expect(isCreditCard('370815144823625')).to.be.true;
-    expect(isCreditCard('4539175760988966')).to.be.true;
-    expect(isCreditCard('4024007167841872')).to.be.true;
-    expect(isCreditCard('5305228386714354')).to.be.true;
-    expect(isCreditCard('5193095214272730')).to.be.true;
-    expect(isCreditCard('6011134360662341')).to.be.true;
-    expect(isCreditCard('6011930876221534')).to.be.true;
+    expect(isCreditCard('378247928520957')).toBeTruthy();
+    expect(isCreditCard('370815144823625')).toBeTruthy();
+    expect(isCreditCard('4539175760988966')).toBeTruthy();
+    expect(isCreditCard('4024007167841872')).toBeTruthy();
+    expect(isCreditCard('5305228386714354')).toBeTruthy();
+    expect(isCreditCard('5193095214272730')).toBeTruthy();
+    expect(isCreditCard('6011134360662341')).toBeTruthy();
+    expect(isCreditCard('6011930876221534')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isCreditCard('abc')).to.be.false;
+    expect(isCreditCard('abc')).toBeFalsy();
   });
 });
 
-import { isEmail } from "@fireflysemantics/is";
+import { isEmail } from "@fs/is";
 
 describe("isEmail", () => {
   it("should return true", () => {
-    expect(isEmail('joe@aol.com')).to.be.true;
+    expect(isEmail('joe@aol.com')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isCreditCard('joe@aol')).to.be.false;
+    expect(isCreditCard('joe@aol')).toBeFalsy();
   });
 });
 
-import { isFQDN } from "@fireflysemantics/is";
+import { isFQDN } from "@fs/is";
 
 describe("isFQDN", () => {
   it("should return true", () => {
-    expect(isFQDN('aol.com')).to.be.true;
+    expect(isFQDN('aol.com')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isFQDN('joe')).to.be.false;
+    expect(isFQDN('joe')).toBeFalsy();
   });
 });
 
-import { isFullWidth } from "@fireflysemantics/is";
+import { isFullWidth } from "@fs/is";
 
 describe("isFullWidth", () => {
   it("should return true", () => {
-    expect(isFullWidth('全角')).to.be.true;
-    expect(isFullWidth('半角片仮名')).to.be.true;
+    expect(isFullWidth('全角')).toBeTruthy();
+    expect(isFullWidth('半角片仮名')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isFullWidth('fullwidth')).to.be.false;
+    expect(isFullWidth('fullwidth')).toBeFalsy();
   });
 });
 
-import { isHalfWidth } from "@fireflysemantics/is";
+import { isHalfWidth } from "@fs/is";
 
 describe("isHalfWidth", () => {
   it("should return true", () => {
-    expect(isHalfWidth('東京都 新宿区 新宿')).to.be.true;
-    expect(isHalfWidth('halfwidth')).to.be.true;
+    expect(isHalfWidth('東京都 新宿区 新宿')).toBeTruthy();
+    expect(isHalfWidth('halfwidth')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isHalfWidth('半角片仮名')).to.be.false;
+    expect(isHalfWidth('半角片仮名')).toBeFalsy();
   });
 });
 
-import { isVariableWidth } from "@fireflysemantics/is";
+import { isVariableWidth } from "@fs/is";
 
 describe("isVariableWidth", () => {
   it("should return true", () => {
-    expect(isVariableWidth('xyzひらが字')).to.be.true;
-    expect(isVariableWidth('234abc３ー０')).to.be.true;
+    expect(isVariableWidth('xyzひらが字')).toBeTruthy();
+    expect(isVariableWidth('234abc３ー０')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isVariableWidth('半角片仮名')).to.be.false;
+    expect(isVariableWidth('半角片仮名')).toBeFalsy();
   });
 });
 
-import { isHexColor } from "@fireflysemantics/is";
+import { isHexColor } from "@fs/is";
 
 describe("isHexColor", () => {
   it("should return true", () => {
-    expect(isHexColor('#ff0022')).to.be.true;
-    expect(isHexColor('#BBBBBB')).to.be.true;
-    expect(isHexColor('fff')).to.be.true;
-    expect(isHexColor('ccc')).to.be.true;
-    expect(isHexColor('#f00')).to.be.true;
+    expect(isHexColor('#ff0022')).toBeTruthy();
+    expect(isHexColor('#BBBBBB')).toBeTruthy();
+    expect(isHexColor('fff')).toBeTruthy();
+    expect(isHexColor('ccc')).toBeTruthy();
+    expect(isHexColor('#f00')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isHexColor('#ff12FG')).to.be.false;
-    expect(isHexColor('ccc00')).to.be.false;
+    expect(isHexColor('#ff12FG')).toBeFalsy();
+    expect(isHexColor('ccc00')).toBeFalsy();
   });
 });
 
-import { isHexadecimal } from "@fireflysemantics/is";
+import { isHexadecimal } from "@fs/is";
 
 describe("isHexadecimal", () => {
   it("should return true", () => {
-    expect(isHexadecimal('e')).to.be.true;
-    expect(isHexadecimal('a')).to.be.true;
+    expect(isHexadecimal('e')).toBeTruthy();
+    expect(isHexadecimal('a')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isHexadecimal('abcdefg')).to.be.false;
+    expect(isHexadecimal('abcdefg')).toBeFalsy();
   });
 });
 
-import { isIP } from "@fireflysemantics/is";
+import { isIP } from "@fs/is";
 
 describe("isIP", () => {
   it("should return true", () => {
-    expect(isIP('127.0.0.1')).to.be.true;
-    expect(isIP('2.2.2.2')).to.be.true;
-    expect(isIP('255.255.255.255')).to.be.true;
+    expect(isIP('127.0.0.1')).toBeTruthy();
+    expect(isIP('2.2.2.2')).toBeTruthy();
+    expect(isIP('255.255.255.255')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isIP('0000.1.1.1.1.1')).to.be.false;
+    expect(isIP('0000.1.1.1.1.1')).toBeFalsy();
   });
 });
 
-import { isISBN } from "@fireflysemantics/is";
+import { isISBN } from "@fs/is";
 
 describe("isISBN", () => {
   it("should return true", () => {
-    expect(isISBN('978-3-16-148410-0')).to.be.true;
+    expect(isISBN('978-3-16-148410-0')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isISBN('0000.1.1.1.1.1')).to.be.false;
+    expect(isISBN('0000.1.1.1.1.1')).toBeFalsy();
   });
 });
 
-import { isISO8601 } from "@fireflysemantics/is";
+import { isISO8601 } from "@fs/is";
 
 describe("isISBN", () => {
   it("should return true", () => {
-    expect(isISO8601('2007-03-15T15:51:00')).to.be.true;
-    expect(isISO8601('2007-03-15')).to.be.true;
+    expect(isISO8601('2007-03-15T15:51:00')).toBeTruthy();
+    expect(isISO8601('2007-03-15')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isISO8601('0000.1.1.1.1.1')).to.be.false;
+    expect(isISO8601('0000.1.1.1.1.1')).toBeFalsy();
   });
 });
 
-import { isJSON } from "@fireflysemantics/is";
+import { isJSON } from "@fs/is";
 
 describe("isJSON", () => {
   it("should return true", () => {
-    expect(isJSON('{"json": "json"}')).to.be.true;
+    expect(isJSON('{"json": "json"}')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isJSON('(json: {0000.1.1.1.1.1)}')).to.be.false;
+    expect(isJSON('(json: {0000.1.1.1.1.1)}')).toBeFalsy();
   });
 });
 
-import { isLowercase } from "@fireflysemantics/is";
+import { isLowercase } from "@fs/is";
 
 describe("isLowercase", () => {
   it("should return true", () => {
-    expect(isLowercase('lowercase')).to.be.true;
+    expect(isLowercase('lowercase')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isLowercase('LOWERCASE')).to.be.false;
+    expect(isLowercase('LOWERCASE')).toBeFalsy();
   });
 });
 
-import { isUppercase } from "@fireflysemantics/is";
+import { isUppercase } from "@fs/is";
 
 describe("isUppercase", () => {
   it("should return true", () => {
-    expect(isUppercase('UPPERCASE')).to.be.true;
+    expect(isUppercase('UPPERCASE')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isUppercase('uppercase')).to.be.false;
+    expect(isUppercase('uppercase')).toBeFalsy();
   });
 });
 
-import { isMobilePhone } from "@fireflysemantics/is";
+import { isMobilePhone } from "@fs/is";
 
 describe("isMobilePhone", () => {
   it("should return true", () => {
-    expect(isMobilePhone('7086324345', "en-US")).to.be.true;
+    expect(isMobilePhone('7086324345', "en-US")).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isMobilePhone('424345', "en-US")).to.be.false;
+    expect(isMobilePhone('424345', "en-US")).toBeFalsy();
   });
 });
 
-import { isMongoId } from "@fireflysemantics/is";
+import { isMongoId } from "@fs/is";
 
 describe("isMongoId", () => {
   it("should return true", () => {
-    expect(isMongoId('507f191e810c19729de860ea')).to.be.true;
+    expect(isMongoId('507f191e810c19729de860ea')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isMongoId('424345')).to.be.false;
+    expect(isMongoId('424345')).toBeFalsy();
   });
 });
 
-import { isMultibyte } from "@fireflysemantics/is";
+import { isMultibyte } from "@fs/is";
 
 describe("isMultibyte", () => {
   it("should return true", () => {
-    expect(isMultibyte('がな・カタ')).to.be.true;
-    expect(isMultibyte('email＠example.com')).to.be.true;
-    expect(isMultibyte('ｘｙ34xxyyF')).to.be.true;
+    expect(isMultibyte('がな・カタ')).toBeTruthy();
+    expect(isMultibyte('email＠example.com')).toBeTruthy();
+    expect(isMultibyte('ｘｙ34xxyyF')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isMultibyte('abcdef')).to.be.false;
-    expect(isMultibyte('424345')).to.be.false;
-    expect(isMultibyte('123abc')).to.be.false;
-    expect(isMultibyte('#$@!" *.')).to.be.false;
+    expect(isMultibyte('abcdef')).toBeFalsy();
+    expect(isMultibyte('424345')).toBeFalsy();
+    expect(isMultibyte('123abc')).toBeFalsy();
+    expect(isMultibyte('#$@!" *.')).toBeFalsy();
   });
 });
 
-import { isSurrogatePair } from "@fireflysemantics/is";
+import { isSurrogatePair } from "@fs/is";
 
 describe("isSurrogatePair", () => {
   it("should return true", () => {
-    expect(isSurrogatePair('𩸽')).to.be.true;
-    expect(isSurrogatePair('AB𥧄1-2')).to.be.true;
-    expect(isSurrogatePair('野𠮷')).to.be.true;
+    expect(isSurrogatePair('𩸽')).toBeTruthy();
+    expect(isSurrogatePair('AB𥧄1-2')).toBeTruthy();
+    expect(isSurrogatePair('野𠮷')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isSurrogatePair('AB1-2')).to.be.false;
-    expect(isSurrogatePair('野')).to.be.false;
+    expect(isSurrogatePair('AB1-2')).toBeFalsy();
+    expect(isSurrogatePair('野')).toBeFalsy();
   });
 });
 
 
-import { isURL } from "@fireflysemantics/is";
+import { isURL } from "@fs/is";
 
 describe("isURL", () => {
   it("should return true", () => {
-    expect(isURL('norway.no')).to.be.true;
-    expect(isURL('http://snafu.com?bar=foo')).to.be.true;
+    expect(isURL('norway.no')).toBeTruthy();
+    expect(isURL('http://snafu.com?bar=foo')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isURL('.no')).to.be.false;
-    expect(isURL('invalid://country.no')).to.be.false;
+    expect(isURL('.no')).toBeFalsy();
+    expect(isURL('invalid://country.no')).toBeFalsy();
   });
 });
 
-import { isUUID } from "@fireflysemantics/is";
+import { isUUID } from "@fs/is";
 
 describe("isUUID", () => {
   it("should return true", () => {
-    expect(isUUID('62db5524-8191-11e8-adc0-fa7ae01bbebc')).to.be.true;
+    expect(isUUID('62db5524-8191-11e8-adc0-fa7ae01bbebc')).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isUUID('424345')).to.be.false;
+    expect(isUUID('424345')).toBeFalsy();
   });
 });
 
-import { isLengthInRange } from "@fireflysemantics/is";
+import { isLengthInRange } from "@fs/is";
 
 describe("isLengthInRange", () => {
   it("should return true", () => {
-    expect(isLengthInRange('62db5524-8191-11e8-adc0-fa7ae01bbebc', 0)).to.be.true;
+    expect(isLengthInRange('62db5524-8191-11e8-adc0-fa7ae01bbebc', 0)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isLengthInRange('424345', 2,3)).to.be.false;
+    expect(isLengthInRange('424345', 2,3)).toBeFalsy();
   });
 });
 
-import { isLengthGreaterThan } from "@fireflysemantics/is";
+import { isLengthGreaterThan } from "@fs/is";
 
 describe("isLengthMoreThan", () => {
   it("should return true", () => {
-    expect(isLengthGreaterThan('62db552dsfsadfasf4', 10)).to.be.true;
+    expect(isLengthGreaterThan('62db552dsfsadfasf4', 10)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isLengthGreaterThan('4', 2)).to.be.false;
+    expect(isLengthGreaterThan('4', 2)).toBeFalsy();
   });
 });
 
 
-import { isLengthLessThan } from "@fireflysemantics/is";
+import { isLengthLessThan } from "@fs/is";
 
 describe("isLengthLessThan", () => {
   it("should return true", () => {
-    expect(isLengthLessThan('62db5524', 10)).to.be.true;
+    expect(isLengthLessThan('62db5524', 10)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isLengthLessThan('424345', 2)).to.be.false;
+    expect(isLengthLessThan('424345', 2)).toBeFalsy();
   });
 });
 
-import { matches } from "@fireflysemantics/is";
+import { matches } from "@fs/is";
 
 describe("matches", () => {
   it("should return true", () => {
-    expect(matches('xyz', /xyz/)).to.be.true;
-    expect(matches('xyz333', /xyz/)).to.be.true;
+    expect(matches('xyz', /xyz/)).toBeTruthy();
+    expect(matches('xyz333', /xyz/)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(matches('XY', /xyz/)).to.be.false;
+    expect(matches('XY', /xyz/)).toBeFalsy();
   });
 });
 
-import { isArrayContainerOf } from "@fireflysemantics/is";
+import { isArrayContainerOf } from "@fs/is";
 
 describe("isArrayContainerOf", () => {
   it("should return true", () => {
-    expect(isArrayContainerOf([2,3,4], [2,3])).to.be.true;
-    expect(isArrayContainerOf([null,undefined,4], [null,undefined])).to.be.true;
+    expect(isArrayContainerOf([2,3,4], [2,3])).toBeTruthy();
+    expect(isArrayContainerOf([null,undefined,4], [null,undefined])).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArrayContainerOf([2,3,4], [2,3,4,1])).to.be.false;
-    expect(isArrayContainerOf([{},{a: 1}, 4], [{}])).to.be.false;
+    expect(isArrayContainerOf([2,3,4], [2,3,4,1])).toBeFalsy();
+    expect(isArrayContainerOf([{},{a: 1}, 4], [{}])).toBeFalsy();
   });
 });
 
-import { isNotArrayContainerOf } from "@fireflysemantics/is";
+import { isNotArrayContainerOf } from "@fs/is";
 
 describe("isNotArrayContainerOf", () => {
   it("should return true", () => {
-    expect(isNotArrayContainerOf([null,undefined,4], [3,2,null,undefined, NaN])).to.be.true;
+    expect(isNotArrayContainerOf([null,undefined,4], [3,2,null,undefined, NaN])).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isNotArrayContainerOf([2,3,4], [2,3,4,2,2])).to.be.false;
-    expect(isNotArrayContainerOf([2,3,4,1], [4,1])).to.be.false;
+    expect(isNotArrayContainerOf([2,3,4], [2,3,4,2,2])).toBeFalsy();
+    expect(isNotArrayContainerOf([2,3,4,1], [4,1])).toBeFalsy();
   });
 });
 
-import { isArrayNotEmpty } from "@fireflysemantics/is";
+import { isArrayNotEmpty } from "@fs/is";
 
 describe("isArrayNotEmpty", () => {
   it("should return true", () => {
-    expect(isArrayNotEmpty([2])).to.be.true;
-    expect(isArrayNotEmpty(['a'])).to.be.true;
+    expect(isArrayNotEmpty([2])).toBeTruthy();
+    expect(isArrayNotEmpty(['a'])).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArrayNotEmpty([])).to.be.false;
+    expect(isArrayNotEmpty([])).toBeFalsy();
   });
 });
 
 
-import { isArraySizeGreaterThan } from "@fireflysemantics/is";
+import { isArraySizeGreaterThan } from "@fs/is";
 
 describe("isArraySizeGreaterThan", () => {
   it("should return true", () => {
-    expect(isArraySizeGreaterThan([2], 0)).to.be.true;
-    expect(isArraySizeGreaterThan(['a'], 0)).to.be.true;
+    expect(isArraySizeGreaterThan([2], 0)).toBeTruthy();
+    expect(isArraySizeGreaterThan(['a'], 0)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArraySizeGreaterThan([], 0)).to.be.false;
+    expect(isArraySizeGreaterThan([], 0)).toBeFalsy();
   });
 });
 
-import { isArraySizeLessThan } from "@fireflysemantics/is";
+import { isArraySizeLessThan } from "@fs/is";
 
 describe("isArraySizeLessThan", () => {
   it("should return true", () => {
-    expect(isArraySizeLessThan([2], 2)).to.be.true;
-    expect(isArraySizeLessThan(['a'], 2)).to.be.true;
+    expect(isArraySizeLessThan([2], 2)).toBeTruthy();
+    expect(isArraySizeLessThan(['a'], 2)).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArraySizeLessThan([1], 1)).to.be.false;
+    expect(isArraySizeLessThan([1], 1)).toBeFalsy();
   });
 });
 
-import { isArrayUnique } from "@fireflysemantics/is";
+import { isArrayUnique } from "@fs/is";
 
 describe("isArrayUnique", () => {
   it("should return true", () => {
-    expect(isArrayUnique([2])).to.be.true;
-    expect(isArrayUnique(['a'])).to.be.true;
-    expect(isArrayUnique([null])).to.be.true;
-    expect(isArrayUnique([undefined])).to.be.true;
+    expect(isArrayUnique([2])).toBeTruthy();
+    expect(isArrayUnique(['a'])).toBeTruthy();
+    expect(isArrayUnique([null])).toBeTruthy();
+    expect(isArrayUnique([undefined])).toBeTruthy();
   });
   it("should return false", () => {
-    expect(isArrayUnique([1,1])).to.be.false;
-    expect(isArrayUnique([null, null])).to.be.false;
-    expect(isArrayUnique([undefined, undefined])).to.be.false;
+    expect(isArrayUnique([1,1])).toBeFalsy();
+    expect(isArrayUnique([null, null])).toBeFalsy();
+    expect(isArrayUnique([undefined, undefined])).toBeFalsy();
   });
 });
 
 
-import { isByteLength } from "@fireflysemantics/is";
+import { isByteLength } from "@fs/is";
 
 describe("isByteLength", () => {
   it("should return true for ISO Date String instances", () => {
-    expect(isByteLength('abc', 1, 4)).to.be.true;
-    expect(isByteLength('abc', 1, Infinity)).to.be.true;
+    expect(isByteLength('abc', 1, 4)).toBeTruthy();
+    expect(isByteLength('abc', 1, Infinity)).toBeTruthy();
   });
   it("should return false for non valid byte length strings", () => {
-    expect(isByteLength('abc', 1, 2)).to.be.false;
+    expect(isByteLength('abc', 1, 2)).toBeFalsy();
   });
 });
 
-import { isInstanceOf } from "@fireflysemantics/is";
+import { isInstanceOf } from "@fs/is";
 
 class InstanceOfCheck {
 
@@ -991,9 +988,9 @@ const test = new InstanceOfCheck();
 
 describe("isInstanceOf", () => {
   it("should return true for ISO Date String instances", () => {
-    expect(isInstanceOf(test, InstanceOfCheck)).to.be.true;
+    expect(isInstanceOf(test, InstanceOfCheck)).toBeTruthy();
   });
   it("should return false for non valid byte length strings", () => {
-    expect(isInstanceOf('abc', InstanceOfCheck)).to.be.false;
+    expect(isInstanceOf('abc', InstanceOfCheck)).toBeFalsy();
   });
 });
