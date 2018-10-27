@@ -19,7 +19,7 @@ Use:
 import { ok } from "assert";
 import {isDefined} from "@fireflysemantics/is";
 
-ok(isDefined(decorator));; 
+ok(isDefined(decorator)); 
 ```
 
 See the [test cases](https://github.com/fireflysemantics/is/blob/master/src/is.spec.ts).  For additional detail also see the [validator.js test cases](https://github.com/chriso/validator.js/tree/master/test).
