@@ -351,6 +351,21 @@ describe("isDivisibleBy", () => {
   });
 });
 
+import { isNotNegative } from "@fs/is";
+
+describe("isNotNegative", () => {
+
+  it(`should be positive`, () => {
+    expect(isNotNegative(4)).toBeTruthy();
+  });
+  it(`should not be positive`, () => {
+    expect(isNotNegative(-0)).toBeTruthy();
+    expect(isNotNegative(0)).toBeTruthy();
+    expect(isNotNegative(-1)).toBeFalsy();
+  });
+});
+
+
 import { isNegative } from "@fs/is";
 
 describe("isDivisibleBy", () => {

@@ -328,10 +328,19 @@ export function isDivisibleBy(value: number, target: number): boolean {
 /**
  * Checks if the value is > 0.
  * @param value The value being checked.
- * @return True if the value is positive, false otherwise.
+ * @return True if the value is a number and is positive, false otherwise.
  */
 export function isPositive(value: number): boolean {
   return typeof value === "number" && value > 0;
+}
+
+/**
+ * Checks if the value is >= 0.
+ * @param value The value being checked.
+ * @return True if the value is a number not negative, false otherwise.
+ */
+export function isNotNegative(value: number): boolean {
+  return typeof value === "number" && value >= 0;
 }
 
 /**
