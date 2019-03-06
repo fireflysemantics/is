@@ -1,8 +1,9 @@
 /**
  * Jest Unit tests.
  */
+import { IsError } from "@fs/is";
 
-import { isBoolean } from "@fs/is";
+ import { isBoolean } from "@fs/is";
 
 describe("isBoolean", () => {
   it("should return true", () => {
@@ -26,6 +27,45 @@ describe("isBoolean", () => {
     expect(isBoolean(-Infinity)).toBeFalsy();
     expect(isBoolean(NaN)).toBeFalsy();
     expect(isBoolean(new Date())).toBeFalsy();
+  });
+});
+
+import { isBooleanError } from "@fs/is";
+
+describe("isBooleanError", () => {
+  it("should not throw", () => {
+
+    try {
+      isBooleanError('foo', 'boo', 'APPLICATION_ERROR_CODE');
+    }
+    catch(e) {
+      expect(e.message).toContain('boo');
+      expect(e.value).toEqual('foo');
+      expect(e.field).toEqual('boo');
+      expect(e.type).toEqual('Boolean');
+      expect(e.code).toContain('APPLICATION_ERROR_CODE');
+      expect(e.name).toEqual('IsError');
+    }
+    
+    expect(()=>{isBooleanError(true, '')}).not.toThrow(IsError);
+    expect(()=>{isBooleanError(false, '')}).not.toThrow(IsError);
+    expect(()=>{isBooleanError(new Boolean("True"), '')}).not.toThrow(IsError);
+    expect(()=>{isBooleanError(new Boolean("False"), '')}).not.toThrow(IsError);
+    expect(()=>{isBooleanError(new Boolean(0), '')}).not.toThrow(IsError);
+    expect(()=>{isBooleanError(new Boolean(1), '')}).not.toThrow(IsError);
+  });
+
+  it("should throw", () => {
+    expect(()=>{isBooleanError({}, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError("foo", '')}).toThrow(IsError);
+    expect(()=>{isBooleanError("", '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(0, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(-0, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(Infinity, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(-Infinity, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(NaN, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(-NaN, '')}).toThrow(IsError);
+    expect(()=>{isBooleanError(new Date(), '')}).toThrow(IsError);
   });
 });
 
@@ -362,6 +402,26 @@ describe("isNotNegative", () => {
     expect(isNotNegative(-0)).toBeTruthy();
     expect(isNotNegative(0)).toBeTruthy();
     expect(isNotNegative(-1)).toBeFalsy();
+  });
+});
+
+import { isNotNegativeError } from "@fs/is";
+
+describe("isNotNegativeError", () => {
+
+  it(`should not throw`, () => {
+    expect(()=>{isNotNegativeError(4, '', '')}).not.toThrow(IsError);
+    expect(()=>{isNotNegativeError(0, '', '')}).not.toThrow(IsError);
+    expect(()=>{isNotNegativeError(-0, '', '')}).not.toThrow(IsError);
+    expect(()=>{isNotNegativeError(Infinity, '', '')}).not.toThrow(IsError);
+  });
+  it(`should throw`, () => {
+    expect(()=>{isNotNegativeError(-0.000000001, '', '')}).toThrow(IsError);
+    expect(()=>{isNotNegativeError(-1, '', '')}).toThrow(IsError);
+    expect(()=>{isNotNegativeError(-Infinity, '', '')}).toThrow(IsError);
+    expect(()=>{isNotNegativeError(-NaN, '', '')}).toThrow(IsError);
+    expect(()=>{isNotNegativeError(NaN, '', '')}).toThrow(IsError);
+    expect(()=>{isNotNegativeError('foo', '', '')}).toThrow(IsError);
   });
 });
 

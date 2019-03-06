@@ -90,6 +90,25 @@ export interface IsFQDNOptions {
   allow_trailing_dot?: boolean;
 }
 
+/**
+ * @param message The error message
+ * @param value The value that violates the constraint
+ * @param field The name of the field
+ * @param type The expected type for the field
+ * @param code The application or module code for the error
+ */
+export class IsError extends Error {
+  constructor(
+    public message:string,
+    public value: any, 
+    public field:string, 
+    public type: string,
+    public code?:string) {
+      super(message);
+      this.name = 'IsError';
+      Object.setPrototypeOf(this, IsError.prototype);      
+  }
+}
 
 /**
  * Checks if the argument is a real boolean.
@@ -98,6 +117,22 @@ export interface IsFQDNOptions {
  */
 export function isBoolean(value: any): boolean {
   return value instanceof Boolean || typeof value === "boolean";
+}
+
+export const BOOLEAN_TYPE = 'Boolean';
+
+/**
+ * Throws an `IsError` if the value is not a `Boolean` instance.
+ * @param value The value being checked.
+ * @param field The name of the field being checked.
+ * @param code The application / module code assigned to this error.
+ * @throws IsError if the value is not a Boolean instance.
+ */
+export function isBooleanError(value: any, field:string, code?: string): void {
+  if (!isBoolean(value)) {
+    const message:string = `The field ${field} should be a boolean valued.  It is set to ${value}. `;
+    throw new IsError(message, value, field, BOOLEAN_TYPE, code);
+  }
 }
 
 
@@ -334,6 +369,8 @@ export function isPositive(value: number): boolean {
   return typeof value === "number" && value > 0;
 }
 
+export const IS_NOT_NEGATIVE_TYPE = 'IsNotNegatie';
+
 /**
  * Checks if the value is >= 0.
  * @param value The value being checked.
@@ -341,6 +378,20 @@ export function isPositive(value: number): boolean {
  */
 export function isNotNegative(value: number): boolean {
   return typeof value === "number" && value >= 0;
+}
+
+/**
+ * Throws an `IsError` if the value is not negative.
+ * @param value The value being checked.
+ * @param field The name of the field being checked.
+ * @param code The application / module code assigned to this error.
+ * @throws IsError if the value is not a Boolean instance.
+ */
+export function isNotNegativeError(value: any, field:string, code?: string): void {
+  if (!isNotNegative(value)) {
+    const message:string = `The field ${field} should not be a negative.  It is set to ${value}. `;
+    throw new IsError(message, value, field, IS_NOT_NEGATIVE_TYPE, code);
+  }
 }
 
 /**
