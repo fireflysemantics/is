@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "1.8.7",
+  "version": "1.8.8",
   "description": "Typescript type and validation checking utility library",
   "main": "target/is.js",
   "typings": "target/is.d.ts",
@@ -30,15 +30,15 @@
   "homepage": "https://fireflysemantics.github.io/is/doc/modules/_is_.html",
   "devDependencies": {
     "@types/jest": "^24.0.9",
-    "@types/node": "^11.10.4",
-    "@types/underscore": "^1.8.12",
+    "@types/node": "^11.10.5",
+    "@types/underscore": "^1.8.13",
     "btoa": "^1.2.1",
     "del-cli": "^1.1.0",
-    "jest": "^24.1.0",
+    "jest": "^24.3.0",
     "npm-check-updates": "^2.15.0",
     "source-map-support": "^0.5.10",
     "ts-jest": "^24.0.0",
-    "ts-node": "^8.0.2",
+    "ts-node": "^8.0.3",
     "tsconfig-paths": "^3.8.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.3.3333"
