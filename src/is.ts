@@ -32,6 +32,17 @@ import { isUppercase as vjsIsUppercase } from "validator";
 import { isLength as vjsIsLength } from "validator";
 import { matches as vjsMatches } from "validator";
 /**
+ * Import / Reexport
+ */
+import { NUMBER_TYPE } from './types';
+export { NUMBER_TYPE } from './types';
+import { BOOLEAN_TYPE } from './types';
+export { BOOLEAN_TYPE } from './types';
+
+import { constraintName as cn} from './utilities';
+export { constraintName } from './utilities';
+
+/**
  * IsNumberOptions.
  */
 export interface IsNumberOptions {
@@ -95,18 +106,49 @@ export interface IsFQDNOptions {
  * @param value The value that violates the constraint
  * @param field The name of the field
  * @param type The expected type for the field
+ * @param constraint The name of the constraint violated
  * @param code The application or module code for the error
  */
 export class IsError extends Error {
   constructor(
     public message:string,
     public value: any, 
-    public field:string, 
-    public type: string,
+    public field?:string, 
+    public type?: string,
+    public constraint?: string,
     public code?:string) {
       super(message);
       this.name = 'IsError';
       Object.setPrototypeOf(this, IsError.prototype);      
+  }
+}
+
+/**
+ * Checks if the argument is in the range of the min max parameters.
+ * @param value The value being checked.
+ * @param min The min parameter
+ * @param max The max parameter
+ * @returns True if the argument is in range.
+ * @throws Error if the min is not a number
+ * @throws Error if the max is not a number
+ */
+export function isNumberInRange(value: any, min:number, max:number): boolean {
+  if (!isNumber(min)) {
+    throw new Error(`The min argument must be an number. It is set to ${min}.`);
+  }
+  if (!isNumber(max)) {
+    throw new Error(`The max argument must be an number. It is set to ${min}.`);
+  }
+
+  return (value >= min && value <= max);
+}
+
+export function isNumberInRangeError(value: number, min:number, max:number, field:string, code?: string):void {
+  const IS_NUMBER_IN_RANGE_CONSTRAINT = cn(arguments.callee.name);
+ 
+  if (!isNumberInRange(value, min, max)) {
+    const message:string = `The field ${field} is not in range [${min}, ${max}].  It is set to ${value}. `;
+    throw new IsError(message, value, field, NUMBER_TYPE, IS_NUMBER_IN_RANGE_CONSTRAINT, code);
   }
 }
 
@@ -119,8 +161,6 @@ export function isBoolean(value: any): boolean {
   return value instanceof Boolean || typeof value === "boolean";
 }
 
-export const BOOLEAN_TYPE = 'Boolean';
-
 /**
  * Throws an `IsError` if the value is not a `Boolean` instance.
  * @param value The value being checked.
@@ -129,9 +169,10 @@ export const BOOLEAN_TYPE = 'Boolean';
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isBooleanError(value: any, field:string, code?: string): void {
+  const BOOLEAN_CONSTRAINT = cn(arguments.callee.name);
   if (!isBoolean(value)) {
     const message:string = `The field ${field} should be a boolean valued.  It is set to ${value}. `;
-    throw new IsError(message, value, field, BOOLEAN_TYPE, code);
+    throw new IsError(message, value, field, BOOLEAN_TYPE, BOOLEAN_CONSTRAINT, code);
   }
 }
 
@@ -369,8 +410,6 @@ export function isPositive(value: number): boolean {
   return typeof value === "number" && value > 0;
 }
 
-export const IS_NOT_NEGATIVE_TYPE = 'IsNotNegatie';
-
 /**
  * Checks if the value is >= 0.
  * @param value The value being checked.
@@ -390,7 +429,7 @@ export function isNotNegative(value: number): boolean {
 export function isNotNegativeError(value: any, field:string, code?: string): void {
   if (!isNotNegative(value)) {
     const message:string = `The field ${field} should not be a negative.  It is set to ${value}. `;
-    throw new IsError(message, value, field, IS_NOT_NEGATIVE_TYPE, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, code);
   }
 }
 
