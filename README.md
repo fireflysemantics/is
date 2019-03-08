@@ -4,6 +4,11 @@
 
 Typescript type testing and validation library.  See [API](https://fireflysemantics.github.io/is/doc/modules/_is_.html) for all methods provided.
 
+## Blog
+
+- [Application Central Nervous System](https://medium.com/@ole.ersoy/application-central-nervous-system-37aba8e5e899)
+- [Angular Application Central Nervous System Brain](https://medium.com/@ole.ersoy/angular-application-nervous-system-brain-685a684f357)
+
 ## Usage
 
 We use this library to implement the validation decorators in [@fireflysemantics/validator](https://www.npmjs.com/package/@fireflysemantics/validator).  The functions can also be used to add semantic meaning to your test cases using [NPM Assert](https://www.npmjs.com/package/assert) or Jest and the same goes for general boolean logic in your source code.
