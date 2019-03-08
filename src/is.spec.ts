@@ -7,6 +7,12 @@ import { isNumberInRange } from "@fs/is";
 
 const APPLICATION_ERROR_CODE = 'APPLICATION_ERROR_CODE';
 
+it("should be an instance of IsError", () => {
+  let error = new IsError("This is an IsError", 'value');
+  expect(error instanceof IsError).toBeTruthy();
+});
+
+
 describe("isNumberInRange", () => {
   it("should be truthy", () => {
     expect(isNumberInRange(1,0,1)).toBeTruthy();
