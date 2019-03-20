@@ -284,7 +284,8 @@ export function isObject(value: any): boolean {
  * @param options The optional configuration {@link IsNumberOptions}.
  * @return True if the value is a number, false otherwise.
  */
-export function isNumber(value: any, options: IsNumberOptions = {}): boolean {
+export function isNumber(value: any, 
+                         options: IsNumberOptions = {  allowNaN:true, allowInfinity: true}): boolean {
   if (value === Infinity || value === -Infinity) {
     return !!options.allowInfinity;
   }
