@@ -297,12 +297,12 @@ describe("isNumber", () => {
     expect(isNumber(NaN, options)).toBeTruthy();
     expect(isNumber(Infinity, options)).toBeTruthy();
     expect(isNumber(-Infinity, options)).toBeTruthy();
+    expect(isNumber(Infinity)).toBeTruthy();
+    expect(isNumber(-Infinity)).toBeTruthy();
   });
 
   it("should return false non numbers", () => {
     expect(isNumber(NaN)).toBeFalsy();
-    expect(isNumber(Infinity)).toBeFalsy();
-    expect(isNumber(-Infinity)).toBeFalsy();
   });
 });
 

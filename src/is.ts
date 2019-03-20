@@ -280,12 +280,15 @@ export function isObject(value: any): boolean {
 
 /**
  * Checks if a given value is a number.
+ * 
+ * Default `IsNumberOptions` allow `-Infinity, Infinity` but disallow `NaN`.
+ * 
  * @param value The value being checked.
  * @param options The optional configuration {@link IsNumberOptions}.
  * @return True if the value is a number, false otherwise.
  */
 export function isNumber(value: any, 
-                         options: IsNumberOptions = {  allowNaN:true, allowInfinity: true}): boolean {
+                         options: IsNumberOptions = {  allowNaN:false, allowInfinity: true}): boolean {
   if (value === Infinity || value === -Infinity) {
     return !!options.allowInfinity;
   }
