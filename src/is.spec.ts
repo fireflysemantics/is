@@ -443,6 +443,23 @@ describe("isDivisibleBy", () => {
   });
 });
 
+import { isPositiveError } from "@fs/is";
+
+describe("isPositiveError", () => {
+  try {
+    isPositiveError(-1, 'boo', APPLICATION_ERROR_CODE);
+  }
+  catch(e) {
+    expect(e.message).toContain('boo');
+    expect(e.value).toEqual(-1);
+    expect(e.field).toEqual('boo');
+    expect(e.type).toEqual('number');
+    expect(e.constraint).toEqual('IsPositive');
+    expect(e.code).toContain(APPLICATION_ERROR_CODE);
+    expect(e.name).toEqual('IsError');
+  }
+});
+
 import { isNotNegative } from "@fs/is";
 
 describe("isNotNegative", () => {

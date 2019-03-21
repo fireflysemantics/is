@@ -422,9 +422,11 @@ export function isPositive(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isPositiveError(value: any, field:string, code?: string): void {
+  const IS_POSITIVE_CONSTRAINT = cn(arguments.callee.name);
+
   if (!isPositive(value)) {
     const message:string = `The field ${field} should be positive.  It is set to ${value}. `;
-    throw new IsError(message, value, field, NUMBER_TYPE, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, IS_POSITIVE_CONSTRAINT, code);
   }
 }
 
