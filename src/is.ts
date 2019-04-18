@@ -447,9 +447,11 @@ export function isNotNegative(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isNotNegativeError(value: any, field:string, code?: string): void {
+  const IS_NOT_NEGATIVE_ERROR_CONSTRAINT = cn(arguments.callee.name);
+
   if (!isNotNegative(value)) {
     const message:string = `The field ${field} should not be negative.  It is set to ${value}. `;
-    throw new IsError(message, value, field, NUMBER_TYPE, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, IS_NOT_NEGATIVE_ERROR_CONSTRAINT, code);
   }
 }
 

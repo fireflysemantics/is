@@ -492,6 +492,19 @@ describe("isNotNegativeError", () => {
     expect(()=>{isNotNegativeError(NaN, '', '')}).toThrow(IsError);
     expect(()=>{isNotNegativeError('foo', '', '')}).toThrow(IsError);
   });
+
+  try {
+    isNotNegativeError(-1, 'test', APPLICATION_ERROR_CODE);
+  }
+  catch(e) {
+    expect(e.message).toContain('test');
+    expect(e.value).toEqual(-1);
+    expect(e.field).toEqual('test');
+    expect(e.type).toEqual('number');
+    expect(e.constraint).toEqual('IsNotNegative');
+    expect(e.code).toContain(APPLICATION_ERROR_CODE);
+    expect(e.name).toEqual('IsError');
+  }
 });
 
 
