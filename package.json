@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "1.8.17",
+  "version": "1.8.18",
   "description": "Typescript type and validation checking utility library",
   "main": "target/is.js",
   "typings": "target/is.d.ts",
