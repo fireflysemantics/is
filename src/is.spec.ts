@@ -536,6 +536,25 @@ describe("isGreaterThan", () => {
   });
 });
 
+
+import { isGreaterThanError } from "@fs/is";
+
+describe("isGreaterThanError", () => {
+  try {
+    isGreaterThanError(0, 1, 'boo', APPLICATION_ERROR_CODE);
+  }
+  catch(e) {
+    expect(e.message).toContain('boo');
+    expect(e.value).toEqual(0);
+    expect(e.field).toEqual('boo');
+    expect(e.type).toEqual('number');
+    expect(e.constraint).toEqual('IsGreaterThan');
+    expect(e.code).toContain(APPLICATION_ERROR_CODE);
+    expect(e.name).toEqual('IsError');
+  }
+});
+
+
 import { isLessThan } from "@fs/is";
 
 describe("isLessThan", () => {

@@ -144,11 +144,11 @@ export function isNumberInRange(value: any, min:number, max:number): boolean {
 }
 
 export function isNumberInRangeError(value: number, min:number, max:number, field:string, code?: string):void {
-  const IS_NUMBER_IN_RANGE_CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = cn(arguments.callee.name);
  
   if (!isNumberInRange(value, min, max)) {
     const message:string = `The field ${field} is not in range [${min}, ${max}].  It is set to ${value}. `;
-    throw new IsError(message, value, field, NUMBER_TYPE, IS_NUMBER_IN_RANGE_CONSTRAINT, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, CONSTRAINT, code);
   }
 }
 
@@ -169,10 +169,10 @@ export function isBoolean(value: any): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isBooleanError(value: any, field:string, code?: string): void {
-  const BOOLEAN_CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = cn(arguments.callee.name);
   if (!isBoolean(value)) {
     const message:string = `The field ${field} should be a boolean valued.  It is set to ${value}. `;
-    throw new IsError(message, value, field, BOOLEAN_TYPE, BOOLEAN_CONSTRAINT, code);
+    throw new IsError(message, value, field, BOOLEAN_TYPE, CONSTRAINT, code);
   }
 }
 
@@ -422,11 +422,11 @@ export function isPositive(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isPositiveError(value: any, field:string, code?: string): void {
-  const IS_POSITIVE_CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = cn(arguments.callee.name);
 
   if (!isPositive(value)) {
     const message:string = `The field ${field} should be positive.  It is set to ${value}. `;
-    throw new IsError(message, value, field, NUMBER_TYPE, IS_POSITIVE_CONSTRAINT, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, CONSTRAINT, code);
   }
 }
 
@@ -447,11 +447,11 @@ export function isNotNegative(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isNotNegativeError(value: any, field:string, code?: string): void {
-  const IS_NOT_NEGATIVE_ERROR_CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = cn(arguments.callee.name);
 
   if (!isNotNegative(value)) {
     const message:string = `The field ${field} should not be negative.  It is set to ${value}. `;
-    throw new IsError(message, value, field, NUMBER_TYPE, IS_NOT_NEGATIVE_ERROR_CONSTRAINT, code);
+    throw new IsError(message, value, field, NUMBER_TYPE, CONSTRAINT, code);
   }
 }
 
@@ -473,6 +473,17 @@ export function isNegative(value: number): boolean {
 export function isGreaterThan(value: number, target: number): boolean {
   return typeof value === "number" && typeof target === "number" && value > target;
 }
+
+export function isGreaterThanError(value: number, target: number, field:string, code?: string):void {
+  const CONSTRAINT = cn(arguments.callee.name);
+ 
+  if (!isGreaterThan(value, target)) {
+    const message:string = `The value (${value}) of the field ${field} should be greater ${target}.`;
+    throw new IsError(message, value, field, NUMBER_TYPE, CONSTRAINT, code);
+  }
+}
+
+
 
 /**
  * Checks if the first number is value < target.
