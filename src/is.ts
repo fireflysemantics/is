@@ -483,6 +483,25 @@ export function isGreaterThanError(value: number, target: number, field:string, 
   }
 }
 
+/**
+ * Checks if value >= target.
+ * @param value The value being checked.
+ * @param target The target value to perform the check against.
+ * @return True if the value is greater or equal to the target, false otherwise.
+ */
+export function isGreaterThanOrEqualTo(value: number, target: number): boolean {
+  return typeof value === "number" && typeof target === "number" && value >= target;
+}
+
+export function isGreaterThanErrorOrEqualTo(value: number, target: number, field:string, code?: string):void {
+  const CONSTRAINT = cn(arguments.callee.name);
+ 
+  if (!isGreaterThanOrEqualTo(value, target)) {
+    const message:string = `The value (${value}) of the field ${field} should be greater than or equal to ${target}.`;
+    throw new IsError(message, value, field, NUMBER_TYPE, CONSTRAINT, code);
+  }
+}
+
 
 
 /**
