@@ -493,7 +493,7 @@ export function isGreaterThanOrEqualTo(value: number, target: number): boolean {
   return typeof value === "number" && typeof target === "number" && value >= target;
 }
 
-export function isGreaterThanErrorOrEqualTo(value: number, target: number, field:string, code?: string):void {
+export function isGreaterThanOrEqualToError(value: number, target: number, field:string, code?: string):void {
   const CONSTRAINT = cn(arguments.callee.name);
  
   if (!isGreaterThanOrEqualTo(value, target)) {
