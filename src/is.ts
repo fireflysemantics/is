@@ -1,3 +1,18 @@
+/**
+ * DO NOT USE `arguments.callee.name` to
+ * derive the constraint name passed
+ * to {@link IsError} instances.  It has 
+ * been disallowed by `strict` mode, 
+ * and causes problems in Angular.  For more see:
+ * [arguments.
+](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/callee) 
+ * 
+ * CONSTRAINT NAMING CONVENTION
+ * 
+ * If the method throwing the error is `isPositiveError()` then the contstraint 
+ * should be name `IsPositive`.
+ */
+
 import { isDivisibleBy as vjsIsDivisibleBy } from "validator";
 import { isFullWidth as vjsIsFullWidth } from "validator";
 import { isBoolean as vjsIsBoolean } from "validator";
@@ -144,7 +159,7 @@ export function isNumberInRange(value: any, min:number, max:number): boolean {
 }
 
 export function isNumberInRangeError(value: number, min:number, max:number, field:string, code?: string):void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsNumberInRange";
  
   if (!isNumberInRange(value, min, max)) {
     const message:string = `The field ${field} is not in range [${min}, ${max}].  It is set to ${value}. `;
@@ -169,7 +184,7 @@ export function isBoolean(value: any): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isBooleanError(value: any, field:string, code?: string): void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsBoolean";
   if (!isBoolean(value)) {
     const message:string = `The field ${field} should be a boolean valued.  It is set to ${value}. `;
     throw new IsError(message, value, field, BOOLEAN_TYPE, CONSTRAINT, code);
@@ -422,7 +437,7 @@ export function isPositive(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isPositiveError(value: any, field:string, code?: string): void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsPositive";
 
   if (!isPositive(value)) {
     const message:string = `The field ${field} should be positive.  It is set to ${value}. `;
@@ -447,7 +462,7 @@ export function isNotNegative(value: number): boolean {
  * @throws IsError if the value is not a Boolean instance.
  */
 export function isNotNegativeError(value: any, field:string, code?: string): void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsNotNegative";
 
   if (!isNotNegative(value)) {
     const message:string = `The field ${field} should not be negative.  It is set to ${value}. `;
@@ -475,7 +490,7 @@ export function isGreaterThan(value: number, target: number): boolean {
 }
 
 export function isGreaterThanError(value: number, target: number, field:string, code?: string):void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsGreaterThan";
  
   if (!isGreaterThan(value, target)) {
     const message:string = `The value (${value}) of the field ${field} should be greater ${target}.`;
@@ -494,7 +509,7 @@ export function isGreaterThanOrEqualTo(value: number, target: number): boolean {
 }
 
 export function isGreaterThanOrEqualToError(value: number, target: number, field:string, code?: string):void {
-  const CONSTRAINT = cn(arguments.callee.name);
+  const CONSTRAINT = "IsGreaterThanOrEqualTo";
  
   if (!isGreaterThanOrEqualTo(value, target)) {
     const message:string = `The value (${value}) of the field ${field} should be greater than or equal to ${target}.`;
