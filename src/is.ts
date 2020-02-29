@@ -11,41 +11,12 @@
  * 
  * If the method throwing the error is `isPositiveError()` then the contstraint 
  * should be name `IsPositive`.
+ * 
+ * The `utilities` export handles this conversion, but we stopped
+ * using it, because of the arguments.callee issue.
  */
+import validator from "validator"
 
-import { isDivisibleBy as vjsIsDivisibleBy } from "validator";
-import { isFullWidth as vjsIsFullWidth } from "validator";
-import { isBoolean as vjsIsBoolean } from "validator";
-import { isNumeric as vjsIsNumeric } from "validator";
-import { contains as vjsContains } from "validator";
-import { isAlpha as vjsIsAlpha } from "validator";
-import { isAlphanumeric as vjsIsAlphaNumeric } from "validator";
-import { isAscii as vjsIsAscii } from "validator";
-import { isBase64 as vjsIsBase64 } from "validator";
-import { isByteLength as vjsIsByteLength } from "validator";
-import { isCreditCard as vjsIsCreditCard } from "validator";
-import { isCurrency as vjsIsCurrency } from "validator";
-import { isEmail as vjsIsEmail } from "validator";
-import { isFQDN as vjsIsFQDN } from "validator";
-import { isHalfWidth as vjsIsHalfWidth } from "validator";
-import { isVariableWidth as vjsIsVariableWidth } from "validator";
-import { isHexColor as vjsIsHexColor } from "validator";
-import { isHexadecimal as vjsIsHexadecimal } from "validator";
-import { isIP as vjsIsIP } from "validator";
-import { isISBN as vjsIsISBN } from "validator";
-import { isISIN as vjsIsISIN } from "validator";
-import { isISO8601 as vjsIsISO8601 } from "validator";
-import { isJSON as vjsIsJSON } from "validator";
-import { isLowercase as vjsIsLowercase } from "validator";
-import { isMobilePhone as vjsIsMobilePhone } from "validator";
-import { isMongoId as vjsIsMongoId } from "validator";
-import { isMultibyte as vjsIsMultibyte } from "validator";
-import { isSurrogatePair as vjsIsSurrogatePair } from "validator";
-import { isURL as vjsIsURL } from "validator";
-import { isUUID as vjsIsUUID } from "validator";
-import { isUppercase as vjsIsUppercase } from "validator";
-import { isLength as vjsIsLength } from "validator";
-import { matches as vjsMatches } from "validator";
 /**
  * Import / Reexport
  */
@@ -54,7 +25,6 @@ export { NUMBER_TYPE } from './types';
 import { BOOLEAN_TYPE } from './types';
 export { BOOLEAN_TYPE } from './types';
 
-import { constraintName as cn} from './utilities';
 export { constraintName } from './utilities';
 
 /**
@@ -416,7 +386,7 @@ export function isDivisibleBy(value: number, target: number): boolean {
   return (
     typeof value === "number" &&
     typeof target === "number" &&
-    vjsIsDivisibleBy(String(value), target)
+    validator.isDivisibleBy(String(value), target)
   );
 }
 
@@ -573,7 +543,7 @@ export function isSameInstant(value: Date, target: Date): boolean {
  * @return True if the value date comes before the target date, false otherwise.
  */
 export function isBooleanString(value: string): boolean {
-  return typeof value === "string" && vjsIsBoolean(value);
+  return typeof value === "string" && validator.isBoolean(value);
 }
 
 /**
@@ -591,7 +561,7 @@ export function isNumberString(value: string, options: IsNumberOptions = {}): bo
   if (value === ('NaN')) {
     return !!options.allowNaN;
   }
-  return typeof value === "string" && vjsIsNumeric(value);
+  return typeof value === "string" && validator.isNumeric(value);
 }
 
 /**
@@ -603,7 +573,7 @@ export function isNumberString(value: string, options: IsNumberOptions = {}): bo
  * @return True if the value is a substring of the target, false otherwise.
  */
 export function isSubString(value: string, target: string): boolean {
-  return typeof value === "string" && vjsContains(target, value);
+  return typeof value === "string" && validator.contains(target, value);
 }
 
 /**
@@ -615,7 +585,7 @@ export function isSubString(value: string, target: string): boolean {
  * @return True if the value is a not a substring of the target, false otherwise.
  */
 export function isNotSubString(value: string, target: string): boolean {
-  return typeof value === "string" && !vjsContains(target, value);
+  return typeof value === "string" && !validator.contains(target, value);
 }
 
 /**
@@ -627,7 +597,7 @@ export function isNotSubString(value: string, target: string): boolean {
  * @return True if the value is a super string of the target, false otherwise.
  */
 export function isSuperString(value: string, target: string): boolean {
-  return typeof value === "string" && vjsContains(value, target);
+  return typeof value === "string" && validator.contains(value, target);
 }
 
 /**
@@ -639,7 +609,7 @@ export function isSuperString(value: string, target: string): boolean {
  * @return True if the value is a not super string of the target, false otherwise.
  */
 export function isNotSuperString(value: string, target: string): boolean {
-  return typeof value === "string" && !vjsContains(value, target);
+  return typeof value === "string" && !validator.contains(value, target);
 }
 
 /**
@@ -650,7 +620,7 @@ export function isNotSuperString(value: string, target: string): boolean {
  * @return True if the value contains only letters (a-zA-Z), false otherwise.
  */
 export function isAlpha(value: string): boolean {
-  return typeof value === "string" && vjsIsAlpha(value);
+  return typeof value === "string" && validator.isAlpha(value);
 }
 
 /**
@@ -661,7 +631,7 @@ export function isAlpha(value: string): boolean {
  * @return True if the value contains only letters and numbers, false otherwise.
  */
 export function isAlphanumeric(value: string): boolean {
-  return typeof value === "string" && vjsIsAlphaNumeric(value);
+  return typeof value === "string" && validator.isAlphanumeric(value);
 }
 
 /**
@@ -673,7 +643,7 @@ export function isAlphanumeric(value: string): boolean {
  * @return True if the value contains only letters and numbers, false otherwise.
  */
 export function isAscii(value: string): boolean {
-  return typeof value === "string" && vjsIsAscii(value);
+  return typeof value === "string" && validator.isAscii(value);
 }
 
 /**
@@ -684,7 +654,7 @@ export function isAscii(value: string): boolean {
  * @return True a the value string is base64 encoded, false otherwise.
  */
 export function isBase64(value: string): boolean {
-  return typeof value === "string" && vjsIsBase64(value);
+  return typeof value === "string" && validator.isBase64(value);
 }
 
 /**
@@ -697,7 +667,7 @@ export function isBase64(value: string): boolean {
  * @return True if the check passes, false otherwise.
  */
 export function isByteLength(value: string, min: number, max?: number): boolean {
-  return typeof value === "string" && vjsIsByteLength(value, min, max);
+  return typeof value === "string" && validator.isByteLength(value, {min, max});
 }
 
 /**
@@ -708,7 +678,7 @@ export function isByteLength(value: string, min: number, max?: number): boolean 
  * @return True if the string is a credit card, false otherwise.
  */
 export function isCreditCard(value: string): boolean {
-  return typeof value === "string" && vjsIsCreditCard(value);
+  return typeof value === "string" && validator.isCreditCard(value);
 }
 
 /**
@@ -723,7 +693,7 @@ export function isCurrency(
   value: string,
   options?: IsCurrencyOptions
 ): boolean {
-  return typeof value === "string" && vjsIsCurrency(value, options);
+  return typeof value === "string" && validator.isCurrency(value, options);
 }
 
 /**
@@ -735,7 +705,7 @@ export function isCurrency(
  * @return True if the string is an email, false otherwise.
  */
 export function isEmail(value: string, options?: IsEmailOptions): boolean {
-  return typeof value === "string" && vjsIsEmail(value, options);
+  return typeof value === "string" && validator.isEmail(value, options);
 }
 
 /**
@@ -747,7 +717,7 @@ export function isEmail(value: string, options?: IsEmailOptions): boolean {
  * @return True if the string is a fully qualified domain name, false otherwise.
  */
 export function isFQDN(value: string, options?: IsFQDNOptions): boolean {
-  return typeof value === "string" && vjsIsFQDN(value, options);
+  return typeof value === "string" && validator.isFQDN(value, options);
 }
 
 /**
@@ -758,7 +728,7 @@ export function isFQDN(value: string, options?: IsFQDNOptions): boolean {
  * @returns  True if the string contains full-width characters, false otherwise.
  */
 export function isFullWidth(value: string): boolean {
-  return typeof value === "string" && vjsIsFullWidth(value);
+  return typeof value === "string" && validator.isFullWidth(value);
 }
 
 /**
@@ -769,7 +739,7 @@ export function isFullWidth(value: string): boolean {
  * @returns  True if the string contains any half-width chars, false otherwise.
  */
 export function isHalfWidth(value: string): boolean {
-  return typeof value === "string" && vjsIsHalfWidth(value);
+  return typeof value === "string" && validator.isHalfWidth(value);
 }
 
 /**
@@ -780,7 +750,7 @@ export function isHalfWidth(value: string): boolean {
  * @returns  True if the string contains variable-width chars, false otherwise.
  */
 export function isVariableWidth(value: string): boolean {
-  return typeof value === "string" && vjsIsVariableWidth(value);
+  return typeof value === "string" && validator.isVariableWidth(value);
 }
 
 /**
@@ -791,7 +761,7 @@ export function isVariableWidth(value: string): boolean {
  * @returns  True if the string is a hexadecimal color, false otherwise.
  */
 export function isHexColor(value: string): boolean {
-  return typeof value === "string" && vjsIsHexColor(value);
+  return typeof value === "string" && validator.isHexColor(value);
 }
 
 /**
@@ -802,7 +772,7 @@ export function isHexColor(value: string): boolean {
  * @returns  True if the string is a hexadecimal number, false otherwise.
  */
 export function isHexadecimal(value: string): boolean {
-  return typeof value === "string" && vjsIsHexadecimal(value);
+  return typeof value === "string" && validator.isHexadecimal(value);
 }
 
 /**
@@ -812,8 +782,8 @@ export function isHexadecimal(value: string): boolean {
  * @param value The value being checked.
  * @returns  True if the string is an IP (version 4 or 6), false otherwise.
  */
-export function isIP(value: string, version?: 4 | 6): boolean {
-  return typeof value === "string" && vjsIsIP(value, version);
+export function isIP(value: string, version?: "4" | "6"): boolean {
+  return typeof value === "string" && validator.isIP(value, version);
 }
 
 /**
@@ -823,8 +793,8 @@ export function isIP(value: string, version?: 4 | 6): boolean {
  * @param value The value being checked.
  * @returns  True if the string is an ISBN, false otherwise.
  */
-export function isISBN(value: string, version?: 10 | 13): boolean {
-  return typeof value === "string" && vjsIsISBN(value, version);
+export function isISBN(value: string, version?: "10" | "13"): boolean {
+  return typeof value === "string" && validator.isISBN(value, version);
 }
 
 /**
@@ -835,7 +805,7 @@ export function isISBN(value: string, version?: 10 | 13): boolean {
  * @returns  True if the string is an ISIN, false otherwise.
  */
 export function isISIN(value: string): boolean {
-  return typeof value === "string" && vjsIsISIN(value);
+  return typeof value === "string" && validator.isISIN(value);
 }
 
 /**
@@ -846,7 +816,7 @@ export function isISIN(value: string): boolean {
  * @returns  True if the string a valid ISO 8601, false otherwise.
  */
 export function isISO8601(value: string): boolean {
-  return typeof value === "string" && vjsIsISO8601(value);
+  return typeof value === "string" && validator.isISO8601(value);
 }
 
 /**
@@ -854,7 +824,7 @@ export function isISO8601(value: string): boolean {
  * If given value is not a string, then it returns false.
  */
 export function isJSON(value: string): boolean {
-  return typeof value === "string" && vjsIsJSON(value);
+  return typeof value === "string" && validator.isJSON(value);
 }
 
 /**
@@ -865,7 +835,7 @@ export function isJSON(value: string): boolean {
  * @returns  True if the string is lowercase, false otherwise.
  */
 export function isLowercase(value: string): boolean {
-  return typeof value === "string" && vjsIsLowercase(value);
+  return typeof value === "string" && validator.isLowercase(value);
 }
 
 /**
@@ -877,8 +847,8 @@ export function isLowercase(value: string): boolean {
  * @param options The optional configuration {@link ValidatorJS.MobilePhoneLocale}.
  * @return True if the string is a mobile phone number, false otherwise.
  */
-export function isMobilePhone(value: string, locale: ValidatorJS.MobilePhoneLocale): boolean {
-  return (typeof value === "string" && vjsIsMobilePhone(value, locale));
+export function isMobilePhone(value: string, locale: validator.MobilePhoneLocale): boolean {
+  return (typeof value === "string" && validator.isMobilePhone(value, locale));
 }
 
 /**
@@ -889,7 +859,7 @@ export function isMobilePhone(value: string, locale: ValidatorJS.MobilePhoneLoca
  * @returns True if the string is a valid hex-encoded representation of a MongoDB ObjectId, false otherwise.
  */
 export function isMongoId(value: string): boolean {
-  return typeof value === "string" && vjsIsMongoId(value);
+  return typeof value === "string" && validator.isMongoId(value);
 }
 
 /**
@@ -900,7 +870,7 @@ export function isMongoId(value: string): boolean {
  * @returns True if the string contains one or more multibyte chars, false otherwise.
  */
 export function isMultibyte(value: string): boolean {
-  return typeof value === "string" && vjsIsMultibyte(value);
+  return typeof value === "string" && validator.isMultibyte(value);
 }
 
 /**
@@ -911,7 +881,7 @@ export function isMultibyte(value: string): boolean {
  * @returns True if the string contains any surrogate pairs chars, false otherwise.
  */
 export function isSurrogatePair(value: string): boolean {
-  return typeof value === "string" && vjsIsSurrogatePair(value);
+  return typeof value === "string" && validator.isSurrogatePair(value);
 }
 
 /**
@@ -922,8 +892,8 @@ export function isSurrogatePair(value: string): boolean {
  * @param options The optional configuration options {@link ValidatorJS.IsURLOptions}
  * @returns True if the string is an url, false otherwise.
  */
-export function isURL(value: string, options?: ValidatorJS.IsURLOptions): boolean {
-  return typeof value === "string" && vjsIsURL(value, options);
+export function isURL(value: string, options?: validator.IsURLOptions): boolean {
+  return typeof value === "string" && validator.isURL(value, options);
 }
 
 /**
@@ -935,7 +905,7 @@ export function isURL(value: string, options?: ValidatorJS.IsURLOptions): boolea
  * @returns True if the string is a UUID, false otherwise.
  */
 export function isUUID(value: string, version?: 3 | 4 | 5): boolean {
-  return typeof value === "string" && vjsIsUUID(value, version);
+  return typeof value === "string" && validator.isUUID(value, version);
 }
 
 /**
@@ -946,7 +916,7 @@ export function isUUID(value: string, version?: 3 | 4 | 5): boolean {
  * @returns True if the string is uppercase, false otherwise. 
  */
 export function isUppercase(value: string): boolean {
-  return typeof value === "string" && vjsIsUppercase(value);
+  return typeof value === "string" && validator.isUppercase(value);
 }
 
 /**
@@ -960,7 +930,7 @@ export function isUppercase(value: string): boolean {
  */
 export function isLengthInRange(value: string, min: number, max?: number): boolean {
   return (
-    typeof value === "string" && vjsIsLength(value, min, max)
+    typeof value === "string" && validator.isLength(value, {min, max})
   );
 }
 
@@ -991,7 +961,8 @@ export function isLengthLessThan(value: string, target: number) {
 }
 
 /**
- * Checks if string matches the pattern. Either matches('foo', /foo/i) or matches('foo', 'foo', 'i').
+ * Checks if string matches the pattern. 
+ * Either matches('foo', /foo/i) or matches('foo', 'foo', 'i').
  * If given value is not a string, then it returns false.
  * 
  * @param value The value being checked.
@@ -1001,12 +972,11 @@ export function isLengthLessThan(value: string, target: number) {
  */
 export function matches(
   value: string,
-  pattern: RegExp,
-  modifiers?: string
+  pattern: RegExp
 ): boolean {
   return (
     typeof value === "string" &&
-    vjsMatches(value, pattern, modifiers)
+    validator.matches(value, pattern)
   );
 }
 
