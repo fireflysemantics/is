@@ -2,8 +2,8 @@
   "name": "@fireflysemantics/is",
   "version": "1.8.24",
   "description": "Typescript type and validation checking utility library",
-  "main": "target/is.js",
-  "typings": "target/is.d.ts",
+  "main": "target/index.js",
+  "typings": "target/index.d.ts",
   "scripts": {
     "test": "jest",
     "doc": "typedoc --out doc ./src/",
@@ -46,7 +46,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@types/validator": "^12.0.1",
-    "validator": "^12.2.0"
+    "@fireflysemantics/validatorts": "^12.2.13"
   }
 }
