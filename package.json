@@ -1,15 +1,15 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "2.0.7",
+  "version": "2.0.9",
   "description": "Typescript type and validation checking utility library",
   "main": "target/index.js",
   "typings": "target/index.d.ts",
   "scripts": {
     "test": "jest",
-    "doc": "typedoc --out doc ./src/",
-    "compile": "del-cli target && tsc",
-    "update": "bump patch && ncu -u && npm i",
-    "dist": "bump patch && ncu -u && npm i && npm run compile"
+    "d": "typedoc --out doc --exclude **/*.spec.ts ./src/",
+    "c": "del-cli target && tsc",
+    "u": "bump patch && ncu -u && npm i",
+    "p": "bump patch && ncu -u && npm i && npm run c && npm publish"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
   "homepage": "https://fireflysemantics.github.io/is/doc/modules/_is_.html",
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.0.2",
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.7",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
     "@types/underscore": "^1.9.4",
     "btoa": "^1.2.1",
     "del-cli": "^3.0.0",
@@ -46,6 +46,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@fireflysemantics/validatorts": "^12.2.13"
+    "@fireflysemantics/validatorts": "^12.2.19"
   }
 }

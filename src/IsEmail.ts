@@ -1,4 +1,4 @@
-import { IsEmailOptions, isEmail as vtsIsEmail } from "@fireflysemantics/validatorts";
+import { IsEmailOptions as vtsIsEmailOptions, isEmail as vtsIsEmail } from "@fireflysemantics/validatorts";
 
 /**
  * Checks if the string is an email.
@@ -8,6 +8,8 @@ import { IsEmailOptions, isEmail as vtsIsEmail } from "@fireflysemantics/validat
  * @param options The options configuration {@link IsEmailOptions}
  * @return True if the string is an email, false otherwise.
  */
-export function isEmail(value: string, options?: IsEmailOptions): boolean {
+export function isEmail(value: string, options?: vtsIsEmailOptions): boolean {
     return typeof value === "string" && vtsIsEmail(value, options);
 }
+
+export type IsEmailOptions = vtsIsEmailOptions
