@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Typescript type and validation checking utility library",
   "main": "target/index.js",
   "typings": "target/index.d.ts",
@@ -46,6 +46,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@fireflysemantics/validatorts": "^12.2.19"
+    "@fireflysemantics/validatorts": "^12.2.20"
   }
 }
