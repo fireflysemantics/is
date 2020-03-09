@@ -12,4 +12,7 @@ export function isEmail(value: string, options?: vtsIsEmailOptions): boolean {
     return typeof value === "string" && vtsIsEmail(value, options);
 }
 
+/**
+ * Reexport IsEmailOptions
+ */
 export type IsEmailOptions = vtsIsEmailOptions
