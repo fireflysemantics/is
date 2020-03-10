@@ -1,4 +1,4 @@
-import { IsCurrencyOptions, isCurrency as vtsIsCurrency } from "@fireflysemantics/validatorts";
+import { IsCurrencyOptions as vtsIsCurrencyOptions, isCurrency as vtsIsCurrency } from "@fireflysemantics/validatorts";
 
 /**
  * Checks if the string is a valid currency amount.
@@ -10,7 +10,12 @@ import { IsCurrencyOptions, isCurrency as vtsIsCurrency } from "@fireflysemantic
  */
 export function isCurrency(
     value: string,
-    options?: IsCurrencyOptions
+    options?: vtsIsCurrencyOptions
 ): boolean {
     return typeof value === "string" && vtsIsCurrency(value, options);
 }
+
+/**
+ * Rexport IsCurrencyOptions
+ */
+export type IsCurrencyOptions = vtsIsCurrencyOptions

@@ -1,4 +1,4 @@
-import { IsFQDNOptions, isFQDN as vtsIsFQDN } from '@fireflysemantics/validatorts'
+import { IsFQDNOptions as vtsIsFQDNOptions, isFQDN as vtsIsFQDN } from '@fireflysemantics/validatorts'
 
 /**
  * Checks if the string is a fully qualified domain name (e.g. domain.com).
@@ -8,6 +8,11 @@ import { IsFQDNOptions, isFQDN as vtsIsFQDN } from '@fireflysemantics/validatort
  * @param options The options configuration {@link IsFQDNOptions}
  * @return True if the string is a fully qualified domain name, false otherwise.
  */
-export function isFQDN(value: string, options?: IsFQDNOptions): boolean {
+export function isFQDN(value: string, options?: vtsIsFQDNOptions): boolean {
     return typeof value === "string" && vtsIsFQDN(value, options);
 }
+
+/**
+ * Reexport the options
+ */
+export type IsFQDNOptions = vtsIsFQDNOptions

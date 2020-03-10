@@ -12,11 +12,12 @@ import { matches } from '@fireflysemantics/validatorts'
  */
 export function isMatch(
     value: string,
-    pattern: RegExp
+    pattern: RegExp,
+    modifiers?: string
   ): boolean {
     return (
       typeof value === "string" &&
-      matches(value, pattern)
+      matches(value, pattern, modifiers)
     );
   }
   

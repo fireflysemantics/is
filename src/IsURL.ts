@@ -1,4 +1,4 @@
-import { IsURLOptions, isURL as vtsIsURL } from "@fireflysemantics/validatorts";
+import { IsURLOptions as vtsIsURLOptions, isURL as vtsIsURL } from "@fireflysemantics/validatorts";
 
 /**
  * Checks if the string is an url.
@@ -8,7 +8,8 @@ import { IsURLOptions, isURL as vtsIsURL } from "@fireflysemantics/validatorts";
  * @param options The optional configuration options {@link ValidatorJS.IsURLOptions}
  * @returns True if the string is an url, false otherwise.
  */
-export function isURL(value: string, options?: IsURLOptions): boolean {
+export function isURL(value: string, options?: vtsIsURLOptions): boolean {
     return typeof value === "string" && vtsIsURL(value, options);
 }
 
+export type IsURLOptions = vtsIsURLOptions
