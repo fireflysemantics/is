@@ -4,6 +4,7 @@ node_js:
   - "stable"
 script:
   - npm run ig
+  - npn run u
   - npm t
   - npm run d
 deploy:
