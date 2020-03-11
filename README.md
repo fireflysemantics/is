@@ -4,6 +4,19 @@
 
 Typescript type testing and validation library.  See [API](https://fireflysemantics.github.io/is/doc/modules/_is_.html) for all methods provided.
 
+## Install
+
+The `@fireflysemantics/is` library declares `@fireflysemantics/validatorts` as a peer dependency.
+
+Therefore both libraries must be installed by your application.
+
+```
+npm i -S @fireflysemantics/validatorts
+
+npm i -S @fireflysemantics/is
+
+```
+
 ## Typedoc
 
 [Typedoc](https://fireflysemantics.github.io/is/doc/)
