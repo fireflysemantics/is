@@ -17,6 +17,27 @@ npm i -S @fireflysemantics/is
 
 ```
 
+```
+
+Note that if you are using the `FESM5` package format the `tslib` peer dependency must also be installed.
+
+```
+npm i -S npm i tslib
+```
+
+# Supported Package Formats
+
+The library is built with the Angular Package Format.  It therefore supports all these package formats (As can be seen in the provided `package.json`) and has integrated typescript definitions:
+
+- "main": "bundles/fireflysemantics-validatorts.umd.js",
+-  "module": "fesm5/fireflysemantics-validatorts.js",
+-  "es2015": "fesm2015/fireflysemantics-validatorts.js",
+-  "esm5": "esm5/fireflysemantics-validatorts.js",
+-  "esm2015": "esm2015/fireflysemantics-validatorts.js",
+-  "fesm5": "fesm5/fireflysemantics-validatorts.js",
+-  "fesm2015": "fesm2015/fireflysemantics-validatorts.js",
+-  "typings": "fireflysemantics-validatorts.d.ts"
+
 ## Typedoc
 
 [Typedoc](https://fireflysemantics.github.io/is/doc/)
