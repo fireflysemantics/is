@@ -1,6 +1,6 @@
 {
   "name": "@fireflysemantics/is",
-  "version": "2.0.16",
+  "version": "2.0.18",
   "peerDependencies": {
     "@fireflysemantics/validatorts": "*"
   },
