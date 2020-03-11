@@ -3,6 +3,7 @@ sudo: false
 node_js:
   - "stable"
 script:
+  - npm run ig
   - npm t
   - npm run d
 deploy:

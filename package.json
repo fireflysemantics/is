@@ -6,6 +6,7 @@
   "typings": "target/index.d.ts",
   "scripts": {
     "test": "jest",
+    "ig": "npm install -g @jsdevtools/version-bump-prompt && npm install -g npm-check-updates && npm install -g npm-install-peers",
     "d": "typedoc --out doc --exclude **/*.spec.ts ./src/",
     "c": "del-cli target && tsc",
     "u": "bump patch && ncu -u && npm i",
