@@ -45,7 +45,7 @@
     "typedoc": "^0.16.11",
     "typescript": "^3.8.3"
   },
-  "dependencies": {
-    "@fireflysemantics/validatorts": "^12.2.21"
+  "peerDependencies": {
+    "@fireflysemantics/validatorts": "*"
   }
 }
