@@ -2,7 +2,7 @@
 
 # @fireflysemantics/is
 
-Typescript type testing and validation library.  See [API](https://fireflysemantics.github.io/is/doc/modules/_is_.html) for all methods provided.
+Typescript type testing and validation library.  See [API](https://fireflysemantics.github.io/is/doc/) for all methods provided.
 
 ## Install
 
