@@ -2,7 +2,7 @@
 import { isPositive } from "./IsPositive"
 const APPLICATION_ERROR_CODE = 'APPLICATION_ERROR_CODE'
 
-describe("isDivisibleBy", () => {
+describe("isPositive", () => {
 
   it(`should be positive`, () => {
     expect(isPositive(4)).toBeTruthy();

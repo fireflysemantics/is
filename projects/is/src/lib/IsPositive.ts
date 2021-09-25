@@ -3,12 +3,11 @@ import { ValidationConstraintEnum } from "./ValidationConstraintEnum";
 import { Types } from "./types";
 
 /**
- * Checks if the value is > 0.
  * @param value The value being checked.
  * @return True if the value is a number and is positive, false otherwise.
  */
 export function isPositive(value: number): boolean {
-    return typeof value === "number" && value > 0;
+    return typeof value === Types.NUMBER && value > 0;
 }
 
 /**

@@ -10,8 +10,7 @@ import { isLength } from "@fireflysemantics/validatorts";
  * @return True if the check passes, false otherwise.
  */
 export function isLengthInRange(value: string, min: number, max?: number): boolean {
-    return (
-      typeof value === "string" && isLength(value, { min, max })
-    );
-  }
-  
+  return (
+    typeof value === "string" && isLength(value, { min, max })
+  );
+}

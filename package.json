@@ -13,7 +13,7 @@
     "c": "ng build is",
     "u": "cd projects/is && ncu -u && npm i && npm-install-peers",
     "bp": "cd projects/is && bump patch",
-    "p": "npm run u && npm run bp && npm run c && cd dist/is/ && npm publish",
+    "p": "npm run bp && npm run c && cd dist/is/ && npm publish",
     "d": "typedoc --out doc --exclude **/*.spec.ts ./projects/is/src/lib"
   },
   "private": true,
