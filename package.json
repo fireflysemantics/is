@@ -39,7 +39,6 @@
     "@angular-devkit/build-angular": "~12.1.4",
     "@angular/cli": "~12.1.2",
     "@angular/compiler-cli": "~12.1.2",
-    "@types/jasmine": "~3.8.0",
     "@types/jest": "27.0.2",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.8.0",
@@ -50,6 +49,7 @@
     "typescript": "~4.3.2"
   },
   "comments": {
+    "remove @types/jasmine": "https://stackoverflow.com/questions/60515148/telling-typedoc-not-to-load-jasmine-annotations",
     "global dependencies": {
       "@jsdevtools/version-bump-prompt global install": "npm install -g @jsdevtools/version-bump-prompt",
       "npm-check-updates": "npm install -g npm-check-updates",
