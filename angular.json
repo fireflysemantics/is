@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "fs-is": {
+      "projectType": "library",
+      "root": "projects/fs-is",
+      "sourceRoot": "projects/fs-is/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/fs-is/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fs-is/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/fs-is/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "projects/fs-is/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "fs-is"
+}

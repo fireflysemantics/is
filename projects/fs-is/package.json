@@ -1,0 +1,19 @@
+{
+  "name": "@fireflysemantics/is",
+  "version": "2.0.29",
+  "bugs": {
+    "url": "https://github.com/fireflysemantics/is/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fireflysemantics/is"
+  },
+  "license": "MIT",
+  "author": "Ole Ersoy",
+  "peerDependencies": {
+    "@fireflysemantics/validatorts": "*"
+  },
+  "devDependencies": {
+    "btoa": "^1.2.1"
+  }
+}
