@@ -75,8 +75,3 @@ export * from './IsUppercase'
 export * from './IsURL'
 export * from './IsUUID'
 export * from './IsVariableWidth'
-export * from "./IsPositiveFinite"
-export * from "./IsNonNegativeFinite"
-export * from "./IsNonNegativeFinite"
-export * from "./IsNumberFinite"
-export * from "./IsNumberFiniteInteger"
